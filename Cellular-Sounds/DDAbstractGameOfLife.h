@@ -7,16 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@protocol GameOfLifeDelegate <NSObject>
+@class DDAbstractGameOfLife;
+@protocol DDGameOfLifeDelegate <NSObject>
 // Is sent to the delegate when the state of the cell in question goes from dead to alive.
--(void)didActivateCellAtRow:(NSUInteger)row col:(NSUInteger)col species:(NSUInteger)species;
+-(void)gameOfLife:(DDAbstractGameOfLife *)gameOfLife didActivateCellAtRow:(NSUInteger)row col:(NSUInteger)col species:(NSUInteger)species;
 @end
 
 @interface DDAbstractGameOfLife : NSObject
-@property (nonatomic, weak) id <GameOfLifeDelegate> delegate;
+@property (nonatomic, weak) id <DDGameOfLifeDelegate> delegate;
 // Returns the current state
-@property (nonatomic, readonly) NSArray *currentState;
+@property (nonatomic, readonly) NSArray *state;
 // Number of rows
 @property (nonatomic, readonly) NSUInteger rows;
 // Number of columns

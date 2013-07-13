@@ -26,17 +26,23 @@
 
 -(void)reset
 {
-  NSAssert(false, @"%s", __PRETTY_FUNCTION__);
+  NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);
 }
 
 -(void)performStep
 {
-  NSAssert(false, @"%s", __PRETTY_FUNCTION__);
+  NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);
 }
 
 -(void)flipCellAtRow:(NSUInteger)row col:(NSUInteger)col species:(NSUInteger)species started:(BOOL)started
 {
-  NSAssert(false, @"%s", __PRETTY_FUNCTION__);
+  NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);
+}
+
+-(NSArray *)state
+{
+  NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);
+  return nil;
 }
 
 
