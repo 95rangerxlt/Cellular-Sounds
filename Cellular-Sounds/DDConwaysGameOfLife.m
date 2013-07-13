@@ -56,7 +56,7 @@
 
 -(NSArray *)state
 {
-  NSMutableArray *state = [self.grid mutableCopy];
+  NSMutableArray *state = [NSMutableArray arrayWithCapacity:self.rows];
   for(NSArray *row in self.grid)
   {
     [state addObject:[row copy]];
@@ -70,12 +70,12 @@
   self.neighbors = nil;
   self.dominantSpecies = nil;
   self.grid = nil;
-  for(int row = 0; row < self.rows; row ++)
+  for(NSUInteger row = 0; row < self.rows; row ++)
   {
     NSMutableArray *line = [NSMutableArray arrayWithCapacity:self.cols];
     NSMutableArray *neighborsLine = [NSMutableArray arrayWithCapacity:self.cols];
     NSMutableArray *dominantSpeciesLine = [NSMutableArray arrayWithCapacity:self.cols];
-    for(int col = 0; col < self.cols; col ++)
+    for(NSUInteger col = 0; col < self.cols; col ++)
     {
       line[col] = @(0);
       neighborsLine[col] = @(0);
@@ -99,14 +99,14 @@
 {
   if(started || self.priorRow != row || self.priorCol != col)
   {
-    if([self.delegate respondsToSelector:@selector(gameOfLife:didActivateCellAtRow:col:species:)])
-    {
-      [self.delegate gameOfLife:self didActivateCellAtRow:row col:col species:species];
-    }
     NSInteger previousValue = [self.grid[row][col] integerValue];
     self.grid[row][col] = previousValue && species && previousValue == species ? @(0) : @(species);
     self.priorCol = col;
     self.priorRow = row;
+    if([self.delegate respondsToSelector:@selector(gameOfLife:didActivateCellAtRow:col:species:)])
+    {
+      [self.delegate gameOfLife:self didActivateCellAtRow:row col:col species:species];
+    }
   }
 }
 

@@ -8,18 +8,19 @@
 
 #import "DDAbstractGameOfLife.h"
 
+@interface DDAbstractGameOfLife ()
+@property (nonatomic, readwrite) NSUInteger rows;
+@property (nonatomic, readwrite) NSUInteger cols;
+@end
+
 @implementation DDAbstractGameOfLife
-{
-  NSUInteger _numRows;
-  NSUInteger _numCols;
-}
 
 -(id)initWithRows:(NSUInteger)rows cols:(NSUInteger)cols
 {
   if((self = [super init]))
   {
-    _numCols = cols;
-    _numRows = rows;
+    self.cols = cols;
+    self.rows = rows;
   }
   return self;
 }
@@ -45,26 +46,16 @@
   return nil;
 }
 
--(NSUInteger)rows
-{
-  return _numRows;
-}
-
--(NSUInteger)cols
-{
-  return _numCols;
-}
-
 -(NSUInteger)previousRow:(NSUInteger)fromRow
 {
   //Wrap around if row == 0
   if(!fromRow)
   {
-    return _numRows - 1;
+    return self.rows - 1;
   }
   else
   {
-    return (fromRow - 1) % _numRows;
+    return (fromRow - 1) % self.rows;
   }
 }
 
@@ -72,35 +63,35 @@
 {
   if(!fromCol)
   {
-    return _numCols - 1;
+    return self.cols - 1;
   }
   else
   {
-    return (fromCol - 1) % _numCols;
+    return (fromCol - 1) % self.cols;
   }
 }
 
 -(NSUInteger)nextRow:(NSUInteger)fromRow
 {
-  if(fromRow == _numRows - 1)
+  if(fromRow == self.rows - 1)
   {
     return 0;
   }
   else
   {
-    return (fromRow + 1) % _numRows;
+    return (fromRow + 1) % self.rows;
   }
 }
 
 -(NSUInteger)nextCol:(NSUInteger)fromCol
 {
-  if(fromCol == _numCols - 1)
+  if(fromCol == self.cols - 1)
   {
     return 0;
   }
   else
   {
-    return (fromCol + 1) % _numCols;
+    return (fromCol + 1) % self.cols;
   }
 }
 

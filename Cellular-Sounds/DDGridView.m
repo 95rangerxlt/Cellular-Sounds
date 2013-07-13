@@ -24,6 +24,8 @@
     if (self) {
       // Disable multi-touch for now
       self.multipleTouchEnabled = NO;
+      self.lastNumCols = 0;
+      self.lastNumRows = 0;
     }
     return self;
 }
@@ -32,23 +34,28 @@
 -(void)drawRect:(CGRect)rect
 {
   // Drawing code
-  CGContextRef context = UIGraphicsGetCurrentContext();
   NSUInteger numRows = [self.grid count];
-  CGRect cellRect = CGRectMake(0, 0, self.cellSide, self.cellSide);
-  CGContextSetStrokeColorWithColor(context, [[UIColor blackColor] CGColor]);
   for(NSUInteger row = 0; row < numRows; row ++)
   {
     NSUInteger numCols = [self.grid[row] count];
     for(NSUInteger col = 0; col < numCols; col ++)
     {
       id cellContents = self.grid[row][col];
-      cellRect.origin.x = self.xPadding + (col * self.cellSide);
-      cellRect.origin.y = self.yPadding + (row * self.cellSide);
-      UIColor *color = [cellContents isKindOfClass:[UIColor class]] ? (UIColor *)cellContents : [self.delegate gridView:self colorForCellContents:cellContents];
-      CGContextSetFillColorWithColor(context, [color CGColor]);
-      CGContextSetLineWidth(context, 10.0f);
-      CGContextStrokeRect(context, cellRect);
-      CGContextFillRect(context, cellRect);
+      CGRect cellRect = CGRectMake(self.xPadding + (col * self.cellSide), self.yPadding + (row * self.cellSide), self.cellSide, self.cellSide);
+      UIBezierPath *path = [UIBezierPath bezierPathWithRect:cellRect];
+      path.lineWidth = 1.5f;
+      UIColor *cellColor;
+      if([cellContents isKindOfClass:[UIColor class]])
+      {
+        cellColor = (UIColor *)cellContents;
+      }
+      else
+      {
+        cellColor = [self.delegate gridView:self colorForCellContents:cellContents];
+      }
+      [cellColor setFill];
+      [path fill];
+      [path stroke];
     }
   }
 }

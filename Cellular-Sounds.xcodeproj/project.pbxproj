@@ -545,8 +545,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 476DE402898644F8A85825DE /* Pods/Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vasco Orey (4NBPX3CKE6)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cellular-Sounds/Cellular-Sounds-Prefix.pch";
@@ -561,8 +559,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 476DE402898644F8A85825DE /* Pods/Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vasco Orey (4NBPX3CKE6)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cellular-Sounds/Cellular-Sounds-Prefix.pch";
