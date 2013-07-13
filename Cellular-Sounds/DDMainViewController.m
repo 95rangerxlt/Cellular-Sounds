@@ -8,12 +8,24 @@
 
 #import "DDMainViewController.h"
 #import "DDGridView.h"
+#import "DDConwaysGameOfLife.h"
 
 @interface DDMainViewController () <DDGridViewDelegate>
 @property (weak, nonatomic) IBOutlet DDGridView *gridView;
+@property (nonatomic, strong) DDConwaysGameOfLife *conway;
 @end
 
 @implementation DDMainViewController
+
+#pragma mark - Properties
+
+-(DDConwaysGameOfLife *)conway
+{
+  if(!_conway) _conway = [[DDConwaysGameOfLife alloc] initWithRows:16 cols:21];
+  return _conway;
+}
+
+#pragma mark - Init
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,10 +41,7 @@
   [super viewDidLoad];
 	// Do any additional setup after loading the view.
   self.gridView.delegate = self;
-  NSArray *row1 = @[@(0),@(1),@(2),@(1),@(0)];
-  NSArray *row2 = @[@(1),@(0),@(1),@(2),@(1)];
-  NSArray *row3 = @[@(2),@(1),@(0),@(1),@(2)];
-  self.gridView.grid = @[row1, row2, row3];
+  self.gridView.grid = self.conway.state;
 }
 
 - (void)didReceiveMemoryWarning

@@ -45,6 +45,15 @@
   return nil;
 }
 
+-(NSUInteger)rows
+{
+  return _numRows;
+}
+
+-(NSUInteger)cols
+{
+  return _numCols;
+}
 
 -(NSUInteger)previousRow:(NSUInteger)fromRow
 {
