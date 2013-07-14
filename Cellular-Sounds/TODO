@@ -1,8 +1,13 @@
 TODO
 ====
 
-* DDGridView
-* Game Of Life
 * Evolving Cells
 * Sound Manager
 * Localized Strings
+
+BACKLOG
+=======
+
+* Improvements
+  * DDGridView
+  * Game Of Life

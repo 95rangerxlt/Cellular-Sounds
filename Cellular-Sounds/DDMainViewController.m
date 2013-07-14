@@ -82,7 +82,6 @@
   NSInteger cell = [cellContents integerValue];
   if(cell)
   {
-    DDLogVerbose(@"%d", self.colorSegmentedControl.selectedSegmentIndex);
     return _colors[cell - 1];
   }
   return [UIColor clearColor];
