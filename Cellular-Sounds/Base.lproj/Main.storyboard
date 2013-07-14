@@ -52,6 +52,7 @@
                         <outlet property="colorSegmentedControl" destination="WhT-Pj-gB6" id="48H-Wu-hsq"/>
                         <outlet property="gameSegmentedControl" destination="aUR-pc-5ND" id="SpI-5t-tqL"/>
                         <outlet property="gridView" destination="2VZ-9W-wgn" id="1En-Lh-cmA"/>
+                        <outlet property="playingSwitch" destination="Vu1-04-QQt" id="CrB-U7-Fwd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DIK-y0-bgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
