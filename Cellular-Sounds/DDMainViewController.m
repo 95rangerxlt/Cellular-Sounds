@@ -15,6 +15,8 @@
 #import "DDConwaysGameOfLife.h"
 #import "AudioManager.h"
 #import "BSequencePlayer.h"
+#import "DDColorSegmentedControl.h"
+#import "DDColorSettingsViewController.h"
 
 #define kDodgerBlueColor [UIColor colorWithRed:0 green:0.478431f blue:1.0f alpha:1.0f]
 #define kDarkOrangeColor [UIColor colorWithRed:1.0f green:0.478431f blue:0 alpha:1.0f]
@@ -26,10 +28,12 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *colorSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISwitch *playingSwitch;
-@property (nonatomic, strong) DDConwaysGameOfLife *conway;
+@property (nonatomic, strong) NSMutableArray *games;
+@property (nonatomic, readonly) DDConwaysGameOfLife *conway;
 @property (nonatomic) NSUInteger numRows;
 @property (nonatomic) NSUInteger numCols;
 @property (nonatomic, strong) NSArray *colors;
+@property (nonatomic, strong) UIPopoverController *popover;
 //
 @property (nonatomic, strong) NSMutableArray *scales;
 @property (nonatomic, strong) NSMutableArray *roots;
@@ -59,14 +63,47 @@
 
 #pragma mark - Properties
 
+-(NSMutableArray *)games
+{
+  if(!_games)
+  {
+    _games = [NSMutableArray arrayWithCapacity:4];
+    for(int i = 0; i < 4; i ++)
+    {
+      _games[i] = [[DDConwaysGameOfLife alloc] initWithRows:self.numRows cols:self.numCols];
+      ((DDConwaysGameOfLife *)_games[i]).delegate = self;
+    }
+  }
+  return _games;
+}
+
 -(DDConwaysGameOfLife *)conway
 {
-  if(!_conway) {
-    _conway = [[DDConwaysGameOfLife alloc] initWithRows:self.numRows cols:self.numCols];
-    _conway.delegate = self;
-  }
-  return _conway;
+  return self.games[self.gameSegmentedControl.selectedSegmentIndex];
 }
+
+#pragma mark - IBActions
+
+- (IBAction)gameSelectionSegmentedControlPressed:(UISegmentedControl *)sender
+{
+  DDLogVerbose(@"Changing game to: %d", sender.selectedSegmentIndex);
+  self.gridView.grid = self.conway.state;
+}
+
+- (IBAction)selectedColorSegmentTapped:(DDColorSegmentedControl *)sender
+{
+  DDColorSettingsViewController *colorVC = [[DDColorSettingsViewController alloc] init];
+  UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:colorVC];
+  NSInteger selected = sender.selectedSegmentIndex;
+  CGFloat x = (sender.frame.origin.x + (sender.frame.size.width / 4) * selected);
+  CGRect selectedRect = CGRectMake(x, sender.frame.origin.y, (sender.frame.size.width / 4), sender.frame.size.height);
+  [popover presentPopoverFromRect:selectedRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+  self.popover = popover;
+  DDLogVerbose(@"%g, %g...%g, %g", sender.frame.origin.x, sender.frame.origin.y, sender.frame.size.width, sender.frame.size.height);
+  DDLogVerbose(@"%g, %g...%g, %g", sender.bounds.origin.x, sender.bounds.origin.y, sender.bounds.size.width, sender.bounds.size.height);
+  DDLogVerbose(@"%g, %g...%g, %g", selectedRect.origin.x, selectedRect.origin.y, selectedRect.size.width, selectedRect.size.height);
+}
+
 
 #pragma mark - Init
 
@@ -103,8 +140,8 @@
   [subviews[1] setTintColor:kDarkViolet];
   [subviews[0] setTintColor:kDeepPinkColor];
   self.colors = @[kDodgerBlueColor, kDarkOrangeColor, kDarkViolet, kDeepPinkColor];
-  self.roots = [@[@(5)] mutableCopy];
-  self.scales = [@[@(0)] mutableCopy];
+  self.roots = [@[@(48), @(60), @(72), @(84)] mutableCopy];
+  self.scales = [@[@(0), @(0), @(0), @(0)] mutableCopy];
   [self setupAudio];
 }
 
@@ -313,13 +350,12 @@
 -(void)updatePool
 {
   //NSLog(@"%g: working!", CACurrentMediaTime());
-//  [self.pools makeObjectsPerformSelector:@selector(performStep)];
-//  NSMutableArray *grids = [NSMutableArray arrayWithCapacity:self.numPools];
-//  for(PoolOfLife *pool in self.pools)
-//  {
-//    [grids addObject:pool.state];
-//  }
-  [self.conway performStep];
+  [self.games makeObjectsPerformSelector:@selector(performStep)];
+  NSMutableArray *grids = [NSMutableArray array];
+  for(DDConwaysGameOfLife *game in self.games)
+  {
+    [grids addObject:game.state];
+  }
   CFTimeInterval startTime = self.startTimeForNextBar;
   if(!startTime)
   {
@@ -329,55 +365,54 @@
   NSInteger channel = 0;
   NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
   NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
-//  for(NSArray *currentGrid in grids)
-//  {
-  NSArray *currentGrid = self.conway.state;
-  for(int row = 0; row < self.numRows; row ++)
+  for(NSArray *currentGrid in grids)
   {
-    for(int col = 0; col < self.numCols; col ++)
+    for(int row = 0; row < self.numRows; row ++)
     {
-      NSNumber *currentCol = @(col);
-      NSInteger dt = row * self.lineDeltaTime;
-      if([[notes allKeys] containsObject:currentCol])
+      for(int col = 0; col < self.numCols; col ++)
       {
-        if([currentGrid[row][col] intValue])
+        NSNumber *currentCol = @(col);
+        NSInteger dt = row * self.lineDeltaTime;
+        if([[notes allKeys] containsObject:currentCol])
         {
-          //Update the note in the dictionary
-          BMidiNote *note = notes[currentCol];
-          [note setDuration:([note getDuration] + self.lineDeltaTime)];
+          if([currentGrid[row][col] intValue])
+          {
+            //Update the note in the dictionary
+            BMidiNote *note = notes[currentCol];
+            [note setDuration:([note getDuration] + self.lineDeltaTime)];
+          }
+          else
+          {
+            //Remove the note from the dictionary and insert it into finalNotes
+            BMidiNote *noteToAdd = notes[currentCol];
+            //                        BMidiNote *noteOff = [[BMidiNote alloc] init];
+            //                        noteOff.note = noteToAdd.note;
+            //                        noteOff.channel = 0;
+            //                        noteOff.velocity = 0;
+            //                        [noteOff setStartTime:[noteToAdd getStartTime] + [noteToAdd getDuration]];
+            //                        [finalNotes addObject:noteOff];
+            [finalNotes addObject:noteToAdd];
+            [notes removeObjectForKey:currentCol];
+          }
         }
         else
         {
-          //Remove the note from the dictionary and insert it into finalNotes
-          BMidiNote *noteToAdd = notes[currentCol];
-          //                        BMidiNote *noteOff = [[BMidiNote alloc] init];
-          //                        noteOff.note = noteToAdd.note;
-          //                        noteOff.channel = 0;
-          //                        noteOff.velocity = 0;
-          //                        [noteOff setStartTime:[noteToAdd getStartTime] + [noteToAdd getDuration]];
-          //                        [finalNotes addObject:noteOff];
-          [finalNotes addObject:noteToAdd];
-          [notes removeObjectForKey:currentCol];
-        }
-      }
-      else
-      {
-        if((channel = [currentGrid[row][col] intValue]))
-        {
-          //Create a new note and insert it into the dictionary
-          BMidiNote *note = [[BMidiNote alloc] init];
-          note.channel = (channel - 1);
-          note.velocity = 127;
+          if((channel = [currentGrid[row][col] intValue]))
+          {
+            //Create a new note and insert it into the dictionary
+            BMidiNote *note = [[BMidiNote alloc] init];
+            note.channel = (channel - 1);
+            note.velocity = 127;
 #warning TODO: multiple games
-          note.note = [self convertToMidiNoteNumber:col game:0];
-          [note setStartTime:(startTime + dt)];
-          [note setDuration:self.lineDeltaTime];
-          notes[currentCol] = note;
+            note.note = [self convertToMidiNoteNumber:col game:0];
+            [note setStartTime:(startTime + dt)];
+            [note setDuration:self.lineDeltaTime];
+            notes[currentCol] = note;
+          }
         }
       }
     }
   }
-//  }
   [finalNotes addObjectsFromArray:[notes allValues]];
   [self.completeSong addObjectsFromArray:[notes allValues]];
   NSLog(@"Song: %d notes", [self.completeSong count]);

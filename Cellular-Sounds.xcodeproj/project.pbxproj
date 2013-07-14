@@ -31,6 +31,8 @@
 		BC24E0F91791679A00F1674E /* BSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = BC24E0C51791679A00F1674E /* BSequence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC24E0FA1791679A00F1674E /* BSequencePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC24E0C71791679A00F1674E /* BSequencePlayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC24E0FB1791679A00F1674E /* BTempoEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC24E0C91791679A00F1674E /* BTempoEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC41E0241792F84B0087A109 /* DDColorSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0231792F84B0087A109 /* DDColorSegmentedControl.m */; };
+		BC41E0271792FD490087A109 /* DDColorSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0261792FD490087A109 /* DDColorSettingsViewController.m */; };
 		BCB5BF5C17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */; };
 		BCB5BF5D17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */; };
 		BCB5BF6317917025006C3C30 /* DDGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF6217917025006C3C30 /* DDGridView.m */; };
@@ -93,6 +95,10 @@
 		BC24E0C91791679A00F1674E /* BTempoEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTempoEvent.m; sourceTree = "<group>"; };
 		BC24E0CA1791679A00F1674E /* BTempoEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTempoEventHandler.h; sourceTree = "<group>"; };
 		BC24E114179168BE00F1674E /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		BC41E0221792F84B0087A109 /* DDColorSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDColorSegmentedControl.h; sourceTree = "<group>"; };
+		BC41E0231792F84B0087A109 /* DDColorSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDColorSegmentedControl.m; sourceTree = "<group>"; };
+		BC41E0251792FD490087A109 /* DDColorSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDColorSettingsViewController.h; sourceTree = "<group>"; };
+		BC41E0261792FD490087A109 /* DDColorSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDColorSettingsViewController.m; sourceTree = "<group>"; };
 		BCB5BF5A17916BF7006C3C30 /* DDAbstractGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractGameOfLife.h; sourceTree = "<group>"; };
 		BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractGameOfLife.m; sourceTree = "<group>"; };
 		BCB5BF6117917025006C3C30 /* DDGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGridView.h; sourceTree = "<group>"; };
@@ -242,6 +248,8 @@
 			children = (
 				BCB5BF6117917025006C3C30 /* DDGridView.h */,
 				BCB5BF6217917025006C3C30 /* DDGridView.m */,
+				BC41E0221792F84B0087A109 /* DDColorSegmentedControl.h */,
+				BC41E0231792F84B0087A109 /* DDColorSegmentedControl.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -262,6 +270,8 @@
 			children = (
 				BCB5BF6417917572006C3C30 /* DDMainViewController.h */,
 				BCB5BF6517917572006C3C30 /* DDMainViewController.m */,
+				BC41E0251792FD490087A109 /* DDColorSettingsViewController.h */,
+				BC41E0261792FD490087A109 /* DDColorSettingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -416,6 +426,8 @@
 				BCB5BF69179180FF006C3C30 /* DDConwaysGameOfLife.m in Sources */,
 				BCB5BF6617917572006C3C30 /* DDMainViewController.m in Sources */,
 				BC24E0F51791679A00F1674E /* BMidiEvent.m in Sources */,
+				BC41E0241792F84B0087A109 /* DDColorSegmentedControl.m in Sources */,
+				BC41E0271792FD490087A109 /* DDColorSettingsViewController.m in Sources */,
 				BCB5BF5C17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */,
 				BC24E0F31791679A00F1674E /* BChannelEvent.m in Sources */,
 			);

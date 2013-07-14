@@ -127,10 +127,10 @@
       else if(numberOfNeighbors == 3 && ![self.grid[row][col] integerValue])
       {
         self.grid[row][col] = self.dominantSpecies[row][col];
-        if([self.delegate respondsToSelector:@selector(gameOfLife:didActivateCellAtRow:col:species:)])
-        {
-          [self.delegate gameOfLife:self didActivateCellAtRow:row col:col species:[self.dominantSpecies[row][col] unsignedIntegerValue]];
-        }
+//        if([self.delegate respondsToSelector:@selector(gameOfLife:didActivateCellAtRow:col:species:)])
+//        {
+//          [self.delegate gameOfLife:self didActivateCellAtRow:row col:col species:[self.dominantSpecies[row][col] unsignedIntegerValue]];
+//        }
       }
     }
   }

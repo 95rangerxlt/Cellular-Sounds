@@ -30,12 +30,15 @@
                                     <segment title="Third"/>
                                     <segment title="Fourth"/>
                                 </segments>
+                                <connections>
+                                    <action selector="gameSelectionSegmentedControlPressed:" destination="dGH-na-0Ro" eventType="valueChanged" id="Z7L-r3-YMv"/>
+                                </connections>
                             </segmentedControl>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vu1-04-QQt">
                                 <rect key="frame" x="699" y="20" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WhT-Pj-gB6">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WhT-Pj-gB6" customClass="DDColorSegmentedControl">
                                 <rect key="frame" x="169" y="58" width="431" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -44,6 +47,9 @@
                                     <segment title=""/>
                                     <segment title=""/>
                                 </segments>
+                                <connections>
+                                    <action selector="selectedColorSegmentTapped:" destination="dGH-na-0Ro" eventType="touchUpInside" id="lQ0-uX-8uv"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
