@@ -19,6 +19,8 @@ typedef enum {
 -(NSArray *)allKeys;
 // Can we set this value for the given key ?
 -(BOOL)canSetValue:(id)value forKey:(NSString *)key;
+// Get the value for the given key.
+-(id)valueForKey:(NSString *)key;
 // Set the value.
 -(void)setValue:(id)value forKey:(NSString *)key;
 // What is the type of accepted value for this key ?

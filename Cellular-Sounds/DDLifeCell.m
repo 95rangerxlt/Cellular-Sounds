@@ -54,23 +54,29 @@
   }
 }
 
+#warning EXC_ARITHMETIC (code=ECX_i386_DIV, subcode=0x0)
 -(void)fight:(DDLifeCell *)cell
 {
   // The cell with highest current life deals some damage to the other
-  if(self.currentLife >= cell.currentLife)
+  if(self.currentLife > cell.currentLife)
   {
     cell.currentLife -= rand() % self.currentLife;
   }
+  else if(cell.currentLife)
+  {
+    self.currentLife -= rand() % cell.currentLife;
+  }
   else
   {
-    self.currentLife -= rand() % self.currentLife;
+    DDLogVerbose(@"%d vs %d = nop", self.currentLife, cell.currentLife);
   }
 }
 
 -(BOOL)shouldMove
 {
   // The lower the life the more willingness to move
-  return self.currentLife ? rand() % self.startingLife > self.currentLife : NO;
+//  return self.currentLife ? rand() % self.startingLife > self.currentLife : NO;
+  return YES;
 }
 
 -(void)didMove
@@ -82,6 +88,7 @@
 {
   self.currentLife --;
   self.age ++;
+  self.timeSinceLastReproduction ++;
 }
 
 -(BOOL)isDead
@@ -106,6 +113,7 @@
       [spawnedCells addObject:[[DDLifeCell alloc] init]];
     }
   }
+  self.timeSinceLastReproduction = 0;
   return spawnedCells;
 }
 

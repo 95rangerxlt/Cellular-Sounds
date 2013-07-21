@@ -33,6 +33,8 @@
 		BC24E0FB1791679A00F1674E /* BTempoEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC24E0C91791679A00F1674E /* BTempoEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC41E0241792F84B0087A109 /* DDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0231792F84B0087A109 /* DDSegmentedControl.m */; };
 		BC41E0271792FD490087A109 /* DDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0261792FD490087A109 /* DDSettingsViewController.m */; };
+		BC6AFD0B179C5F20003AC5FC /* DDConwaysSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFD0A179C5F20003AC5FC /* DDConwaysSettings.m */; };
+		BC6AFD0F179C5F4F003AC5FC /* DDReactiveSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFD0E179C5F4F003AC5FC /* DDReactiveSettings.m */; };
 		BC85E8AF179C04A20079CFE5 /* DDReactiveGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */; };
 		BC85E8B6179C48E00079CFE5 /* alex glockenspiel.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B2179C48E00079CFE5 /* alex glockenspiel.sf2 */; };
 		BC85E8B7179C48E00079CFE5 /* bdlutes_musicbox.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B3179C48E00079CFE5 /* bdlutes_musicbox.sf2 */; };
@@ -109,6 +111,10 @@
 		BC41E0231792F84B0087A109 /* DDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSegmentedControl.m; sourceTree = "<group>"; };
 		BC41E0251792FD490087A109 /* DDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSettingsViewController.h; sourceTree = "<group>"; };
 		BC41E0261792FD490087A109 /* DDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSettingsViewController.m; sourceTree = "<group>"; };
+		BC6AFD09179C5F20003AC5FC /* DDConwaysSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDConwaysSettings.h; sourceTree = "<group>"; };
+		BC6AFD0A179C5F20003AC5FC /* DDConwaysSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDConwaysSettings.m; sourceTree = "<group>"; };
+		BC6AFD0D179C5F4F003AC5FC /* DDReactiveSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveSettings.h; sourceTree = "<group>"; };
+		BC6AFD0E179C5F4F003AC5FC /* DDReactiveSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveSettings.m; sourceTree = "<group>"; };
 		BC85E8AD179C04A20079CFE5 /* DDReactiveGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveGameOfLife.h; sourceTree = "<group>"; };
 		BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveGameOfLife.m; sourceTree = "<group>"; };
 		BC85E8B0179C06CB0079CFE5 /* DDSettingsResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSettingsResponder.h; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 				BCB5BF5817916BB7006C3C30 /* Model */,
 				BCB5BF5717916BB0006C3C30 /* Views */,
 				BC85E8B1179C06CF0079CFE5 /* Protocols */,
+				BC6AFD0C179C5F32003AC5FC /* Settings */,
 				BCB5BF5917916BBE006C3C30 /* Controllers */,
 				BC24E08D1791673D00F1674E /* DDAppDelegate.h */,
 				BC24E08E1791673D00F1674E /* DDAppDelegate.m */,
@@ -275,6 +282,17 @@
 			);
 			name = co.deluge.advancedmidi;
 			path = "../MIDI-Library/co.deluge.advancedmidi";
+			sourceTree = "<group>";
+		};
+		BC6AFD0C179C5F32003AC5FC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BC6AFD09179C5F20003AC5FC /* DDConwaysSettings.h */,
+				BC6AFD0A179C5F20003AC5FC /* DDConwaysSettings.m */,
+				BC6AFD0D179C5F4F003AC5FC /* DDReactiveSettings.h */,
+				BC6AFD0E179C5F4F003AC5FC /* DDReactiveSettings.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		BC85E8B1179C06CF0079CFE5 /* Protocols */ = {
@@ -499,9 +517,11 @@
 				BC24E0F41791679A00F1674E /* BMidiClock.m in Sources */,
 				BC24E08B1791673D00F1674E /* main.m in Sources */,
 				BCB5BF69179180FF006C3C30 /* DDConwaysGameOfLife.m in Sources */,
+				BC6AFD0F179C5F4F003AC5FC /* DDReactiveSettings.m in Sources */,
 				BCB5BF6617917572006C3C30 /* DDMainViewController.m in Sources */,
 				BC24E0F51791679A00F1674E /* BMidiEvent.m in Sources */,
 				BC41E0241792F84B0087A109 /* DDSegmentedControl.m in Sources */,
+				BC6AFD0B179C5F20003AC5FC /* DDConwaysSettings.m in Sources */,
 				BC41E0271792FD490087A109 /* DDSettingsViewController.m in Sources */,
 				BCB5BF5C17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */,
 				BC24E0F31791679A00F1674E /* BChannelEvent.m in Sources */,

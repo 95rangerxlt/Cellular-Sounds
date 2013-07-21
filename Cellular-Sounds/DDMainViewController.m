@@ -75,7 +75,8 @@
   if(!_games)
   {
     _games = [NSMutableArray arrayWithCapacity:4];
-    _games[0] = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:29];
+    _games[0] = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:129];
+    ((DDReactiveGameOfLife *)_games[0]).on = YES;
     ((DDReactiveGameOfLife *)_games[0]).delegate = self;
     for(int i = 1; i < 4; i ++)
     {

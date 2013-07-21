@@ -74,6 +74,10 @@
 
 -(void)performStep
 {
+  if(!self.isOn)
+  {
+    return;
+  }
   NSMutableArray *allRows = [NSMutableArray numbersUpToAndIncluding:self.rows];
   NSInteger numberOfRows = [allRows count];
   while(numberOfRows)
