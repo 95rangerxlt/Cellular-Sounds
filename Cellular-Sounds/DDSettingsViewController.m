@@ -1,18 +1,18 @@
 //
-//  DDColorSettingsViewController.m
+//  DDSettingsViewController.m
 //  Cellular-Sounds
 //
 //  Created by Vasco Orey on 7/14/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "DDColorSettingsViewController.h"
+#import "DDSettingsViewController.h"
 
-@interface DDColorSettingsViewController ()
+@interface DDSettingsViewController ()
 
 @end
 
-@implementation DDColorSettingsViewController
+@implementation DDSettingsViewController
 
 - (void)viewDidLoad
 {

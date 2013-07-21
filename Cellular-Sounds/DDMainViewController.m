@@ -15,20 +15,23 @@
 #import "DDConwaysGameOfLife.h"
 #import "AudioManager.h"
 #import "BSequencePlayer.h"
-#import "DDColorSegmentedControl.h"
-#import "DDColorSettingsViewController.h"
+#import "DDSegmentedControl.h"
+#import "DDSettingsViewController.h"
+#import "DDSettingsResponder.h"
 
 #define kDodgerBlueColor [UIColor colorWithRed:0 green:0.478431f blue:1.0f alpha:1.0f]
 #define kDarkOrangeColor [UIColor colorWithRed:1.0f green:0.478431f blue:0 alpha:1.0f]
 #define kDarkViolet [UIColor colorWithRed:0.478431f green:0 blue:1.0f alpha:1.0f]
 #define kDeepPinkColor [UIColor colorWithRed:1.0f green:0 blue:0.478431f alpha:1.0f]
 
-@interface DDMainViewController () <DDGridViewDelegate, DDGameOfLifeDelegate>
+@interface DDMainViewController () <DDGridViewDelegate, DDGameOfLifeDelegate, DDSettingsResponder>
 @property (weak, nonatomic) IBOutlet DDGridView *gridView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gameSegmentedControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *colorSegmentedControl;
+@property (weak, nonatomic) IBOutlet DDSegmentedControl *gameSegmentedControl;
+@property (weak, nonatomic) IBOutlet DDSegmentedControl *colorSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISwitch *playingSwitch;
 @property (nonatomic, strong) NSMutableArray *games;
+@property (nonatomic) NSUInteger currentGame;
+@property (nonatomic) NSUInteger currentColor;
 @property (nonatomic, readonly) DDConwaysGameOfLife *conway;
 @property (nonatomic) NSUInteger numRows;
 @property (nonatomic) NSUInteger numCols;
@@ -79,29 +82,50 @@
 
 -(DDConwaysGameOfLife *)conway
 {
-  return self.games[self.gameSegmentedControl.selectedSegmentIndex];
+  return self.games[self.currentGame];
 }
 
 #pragma mark - IBActions
 
-- (IBAction)gameSelectionSegmentedControlPressed:(UISegmentedControl *)sender
+- (IBAction)gameSelectionSegmentedControlPressed:(DDSegmentedControl *)sender
 {
-  DDLogVerbose(@"Changing game to: %d", sender.selectedSegmentIndex);
-  self.gridView.grid = self.conway.state;
+  DDLogVerbose(@"Value changed: %d to %d", self.currentGame, sender.selectedSegmentIndex);
+  if(self.currentGame != sender.selectedSegmentIndex)
+  {
+    DDLogVerbose(@"Changing game to: %d", sender.selectedSegmentIndex);
+    self.currentGame = sender.selectedSegmentIndex;
+    self.gridView.grid = self.conway.state;
+  }
+  else
+  {
+    [self popoverFromSegmentedControl:sender];
+  }
 }
 
-- (IBAction)selectedColorSegmentTapped:(DDColorSegmentedControl *)sender
+- (IBAction)colorSegmentedControlPressed:(DDSegmentedControl *)sender
 {
-  DDColorSettingsViewController *colorVC = [[DDColorSettingsViewController alloc] init];
+  if(self.currentColor != sender.selectedSegmentIndex)
+  {
+    self.currentColor = sender.selectedSegmentIndex;
+  }
+  else
+  {
+    [self popoverFromSegmentedControl:sender];
+  }
+}
+
+-(void)popoverFromSegmentedControl:(DDSegmentedControl *)sender
+{
+  DDSettingsViewController *colorVC = [[DDSettingsViewController alloc] init];
   UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:colorVC];
   NSInteger selected = sender.selectedSegmentIndex;
   CGFloat x = (sender.frame.origin.x + (sender.frame.size.width / 4) * selected);
   CGRect selectedRect = CGRectMake(x, sender.frame.origin.y, (sender.frame.size.width / 4), sender.frame.size.height);
   [popover presentPopoverFromRect:selectedRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
   self.popover = popover;
-  DDLogVerbose(@"%g, %g...%g, %g", sender.frame.origin.x, sender.frame.origin.y, sender.frame.size.width, sender.frame.size.height);
-  DDLogVerbose(@"%g, %g...%g, %g", sender.bounds.origin.x, sender.bounds.origin.y, sender.bounds.size.width, sender.bounds.size.height);
-  DDLogVerbose(@"%g, %g...%g, %g", selectedRect.origin.x, selectedRect.origin.y, selectedRect.size.width, selectedRect.size.height);
+  LOG_RECT(sender.frame);
+  LOG_RECT(sender.bounds);
+  LOG_RECT(selectedRect);
 }
 
 
@@ -131,6 +155,7 @@
 {
   [super viewDidLoad];
 	// Do any additional setup after loading the view.
+  // Define actions for the segmented controls
   self.gridView.delegate = self;
   self.gridView.grid = self.conway.state;
   self.colorSegmentedControl.selectedSegmentIndex = 0;

@@ -1,14 +1,14 @@
 //
-//  DDColorSegmentedControl.m
+//  DDSegmentedControl.m
 //  Cellular-Sounds
 //
 //  Created by Vasco Orey on 7/14/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "DDColorSegmentedControl.h"
+#import "DDSegmentedControl.h"
 
-@implementation DDColorSegmentedControl
+@implementation DDSegmentedControl
 
 // Override to capture taps on currently selected index
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

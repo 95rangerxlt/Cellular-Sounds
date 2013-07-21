@@ -34,6 +34,7 @@
 -(void)drawRect:(CGRect)rect
 {
   // Drawing code
+  [[UIColor whiteColor] setStroke];
   NSUInteger numRows = [self.grid count];
   for(NSUInteger row = 0; row < numRows; row ++)
   {
@@ -43,7 +44,7 @@
       id cellContents = self.grid[row][col];
       CGRect cellRect = CGRectMake(self.xPadding + (col * self.cellSide), self.yPadding + (row * self.cellSide), self.cellSide, self.cellSide);
       UIBezierPath *path = [UIBezierPath bezierPathWithRect:cellRect];
-      path.lineWidth = 1.5f;
+      path.lineWidth = 2.0f;
       UIColor *cellColor;
       if([cellContents isKindOfClass:[UIColor class]])
       {

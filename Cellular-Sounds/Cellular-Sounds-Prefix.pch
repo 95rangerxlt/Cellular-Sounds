@@ -18,6 +18,8 @@
 
 #ifdef DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#define LOG_RECT(rect) DDLogVerbose(@"*** RECT *** Origin: (%g, %g); Size: (%g, %g)", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
 #else
 static const int ddLogLevel = LOG_LEVEL_ERROR;
+#define LOG_RECT(rect)
 #endif

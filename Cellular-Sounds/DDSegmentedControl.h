@@ -1,5 +1,5 @@
 //
-//  DDColorSettingsViewController.h
+//  DDSegmentedControl.h
 //  Cellular-Sounds
 //
 //  Created by Vasco Orey on 7/14/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DDColorSettingsViewController : UIViewController
+@interface DDSegmentedControl : UISegmentedControl
 
 @end
