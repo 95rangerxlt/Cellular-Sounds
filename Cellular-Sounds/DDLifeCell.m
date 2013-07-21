@@ -33,6 +33,15 @@
   return self;
 }
 
+-(id)initWithSpecies:(NSUInteger)species
+{
+  if((self = [self init]))
+  {
+    self.species = species;
+  }
+  return self;
+}
+
 -(void)eat:(DDFoodCell *)food
 {
   if(self.currentLife + food.food > self.startingLife)

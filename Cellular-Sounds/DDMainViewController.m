@@ -36,7 +36,7 @@
 @property (nonatomic, strong) NSMutableArray *games;
 @property (nonatomic) NSUInteger currentGame;
 @property (nonatomic) NSUInteger currentColor;
-@property (nonatomic, readonly) DDConwaysGameOfLife *conway;
+@property (nonatomic, readonly) DDAbstractGameOfLife *currentGameOfLife;
 @property (nonatomic) NSUInteger numRows;
 @property (nonatomic) NSUInteger numCols;
 @property (nonatomic, strong) NSArray *colors;
@@ -75,7 +75,8 @@
   if(!_games)
   {
     _games = [NSMutableArray arrayWithCapacity:4];
-    _games[0] = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:12];
+    _games[0] = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:29];
+    ((DDReactiveGameOfLife *)_games[0]).delegate = self;
     for(int i = 1; i < 4; i ++)
     {
       _games[i] = [[DDConwaysGameOfLife alloc] initWithRows:self.numRows cols:self.numCols];
@@ -85,7 +86,7 @@
   return _games;
 }
 
--(DDConwaysGameOfLife *)conway
+-(DDAbstractGameOfLife *)currentGameOfLife
 {
   return self.games[self.currentGame];
 }
@@ -99,7 +100,7 @@
   {
     DDLogVerbose(@"Changing game to: %d", sender.selectedSegmentIndex);
     self.currentGame = sender.selectedSegmentIndex;
-    self.gridView.grid = self.conway.state;
+    self.gridView.grid = self.currentGameOfLife.state;
   }
   else
   {
@@ -162,7 +163,7 @@
 	// Do any additional setup after loading the view.
   // Define actions for the segmented controls
   self.gridView.delegate = self;
-  self.gridView.grid = self.conway.state;
+  self.gridView.grid = self.currentGameOfLife.state;
   self.colorSegmentedControl.selectedSegmentIndex = 0;
   NSArray *subviews = self.colorSegmentedControl.subviews;
   [subviews[3] setTintColor:kDodgerBlueColor];
@@ -210,14 +211,15 @@
 
 -(void)gridView:(DDGridView *)gridView didDetectTouchAtRow:(NSUInteger)row col:(NSUInteger)col justStarted:(BOOL)justStarted
 {
-  [self.conway flipCellAtRow:row col:col species:(self.colorSegmentedControl.selectedSegmentIndex + 1) started:justStarted];
+  NSUInteger species = [self.currentGameOfLife isKindOfClass:[DDConwaysGameOfLife class]] ? (self.colorSegmentedControl.selectedSegmentIndex + 1) : self.colorSegmentedControl.selectedSegmentIndex;
+  [self.currentGameOfLife flipCellAtRow:row col:col species:species started:justStarted];
 }
 
 #pragma mark - DDGameOfLifeDelegate
 
 -(void)gameOfLife:(DDAbstractGameOfLife *)gameOfLife didActivateCellAtRow:(NSUInteger)row col:(NSUInteger)col species:(NSUInteger)species
 {
-  self.gridView.grid = self.conway.state;
+  self.gridView.grid = self.currentGameOfLife.state;
 }
 
 #pragma mark - Audio
@@ -306,7 +308,7 @@
           if(!(self.metronomeTicks % 4))
           {
             //NSLog(@"Setting the new grid (%d ticks)", self.metronomeTicks);
-            self.gridView.grid = self.conway.state;
+            self.gridView.grid = self.currentGameOfLife.state;
           }
           if(!self.timeOfLastBeat)
           {
@@ -451,8 +453,12 @@
           if([cell isKindOfClass:[DDLifeCell class]])
           {
             DDLifeCell *lifeCell = (DDLifeCell *)cell;
-            channel = ((DDLifeCell *)cell).species;
+            channel = lifeCell.species;
             velocity = (UInt8)(velocity * (float)lifeCell.currentLife / lifeCell.startingLife);
+            if(!velocity)
+            {
+              DDLogVerbose(@"Not playing (%d,%d): %d / %d = 0?", row, col, lifeCell.currentLife, lifeCell.startingLife);
+            }
           }
           else if([cell isKindOfClass:[NSNumber class]])
           {

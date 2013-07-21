@@ -13,7 +13,7 @@
 #import "NSMutableArray+Counting.h"
 
 #define kSpawnCellProbability 0.16f
-#define kSpawnFoodProbability 0.24f
+#define kSpawnFoodProbability 0.32f
 
 @interface DDReactiveGameOfLife ()
 @property (nonatomic, strong) NSMutableArray *grid;
@@ -248,7 +248,23 @@
 {
   if(started || row != self.lastRow || col != self.lastCol)
   {
-    
+    self.lastRow = row;
+    self.lastCol = col;
+    if([self.grid[row][col] isKindOfClass:[DDLifeCell class]] && ((DDLifeCell *)self.grid[row][col]).species == species)
+    {
+      DDCell *cell = [[DDCell alloc] init];
+      cell.row = row;
+      cell.col = col;
+      self.grid[row][col] = cell;
+    }
+    else
+    {
+      DDLifeCell *cell = [[DDLifeCell alloc] initWithSpecies:species];
+      cell.row = row;
+      cell.col = col;
+      self.grid[row][col] = cell;
+    }
+    [self.delegate gameOfLife:self didActivateCellAtRow:row col:col species:species];
   }
 }
 

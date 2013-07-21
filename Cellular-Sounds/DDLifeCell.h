@@ -21,6 +21,8 @@ typedef enum {
 @property (nonatomic) NSInteger currentLife;
 @property (nonatomic) NSInteger startingLife;
 @property (nonatomic) CellOrientation orientation;
+-(id)init;
+-(id)initWithSpecies:(NSUInteger)species;
 -(void)eat:(DDFoodCell *)food;
 -(void)fight:(DDLifeCell *)cell;
 -(BOOL)shouldMove;
