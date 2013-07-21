@@ -46,7 +46,7 @@
 {
   if((self = [super initWithRows:rows cols:cols]))
   {
-    self.status = On;
+    self.on = YES;
     [self reset];
   }
   return self;
@@ -89,7 +89,7 @@
 
 -(void)performStep
 {
-  if(self.status == On)
+  if(self.isOn)
   {
     [self updateGrid];
   }

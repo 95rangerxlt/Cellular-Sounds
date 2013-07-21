@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class DDAbstractGameOfLife;
 @protocol DDGameOfLifeDelegate <NSObject>
 // Is sent to the delegate when the state of the cell in question goes from dead to alive.
@@ -14,6 +15,9 @@
 @end
 
 @interface DDAbstractGameOfLife : NSObject
+// Currently on or off ? On -> performStep should alter the state, Off -> should not alter the state
+@property (nonatomic, getter = isOn) BOOL on;
+// The delegate
 @property (nonatomic, weak) id <DDGameOfLifeDelegate> delegate;
 // Returns the current state
 @property (nonatomic, readonly) NSArray *state;

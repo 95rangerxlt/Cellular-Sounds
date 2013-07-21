@@ -34,6 +34,15 @@
 		BC41E0241792F84B0087A109 /* DDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0231792F84B0087A109 /* DDSegmentedControl.m */; };
 		BC41E0271792FD490087A109 /* DDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0261792FD490087A109 /* DDSettingsViewController.m */; };
 		BC85E8AF179C04A20079CFE5 /* DDReactiveGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */; };
+		BC85E8B6179C48E00079CFE5 /* alex glockenspiel.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B2179C48E00079CFE5 /* alex glockenspiel.sf2 */; };
+		BC85E8B7179C48E00079CFE5 /* bdlutes_musicbox.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B3179C48E00079CFE5 /* bdlutes_musicbox.sf2 */; };
+		BC85E8B8179C48E00079CFE5 /* music box.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B4179C48E00079CFE5 /* music box.sf2 */; };
+		BC85E8B9179C48E00079CFE5 /* xylophone esmart.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B5179C48E00079CFE5 /* xylophone esmart.sf2 */; };
+		BC85E8BE179C49B30079CFE5 /* DDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8BD179C49B30079CFE5 /* DDCell.m */; };
+		BC85E8C3179C49E40079CFE5 /* DDFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8C2179C49E40079CFE5 /* DDFoodCell.m */; };
+		BC85E8C6179C4A330079CFE5 /* DDLifeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8C5179C4A330079CFE5 /* DDLifeCell.m */; };
+		BC85E8C9179C4B8B0079CFE5 /* NSMutableArray+Counting.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8C8179C4B8B0079CFE5 /* NSMutableArray+Counting.m */; };
+		BC85E8CB179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8CA179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 */; };
 		BCB5BF5C17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */; };
 		BCB5BF5D17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */; };
 		BCB5BF6317917025006C3C30 /* DDGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF6217917025006C3C30 /* DDGridView.m */; };
@@ -103,6 +112,19 @@
 		BC85E8AD179C04A20079CFE5 /* DDReactiveGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveGameOfLife.h; sourceTree = "<group>"; };
 		BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveGameOfLife.m; sourceTree = "<group>"; };
 		BC85E8B0179C06CB0079CFE5 /* DDSettingsResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSettingsResponder.h; sourceTree = "<group>"; };
+		BC85E8B2179C48E00079CFE5 /* alex glockenspiel.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "alex glockenspiel.sf2"; path = "SF2/alex glockenspiel.sf2"; sourceTree = SOURCE_ROOT; };
+		BC85E8B3179C48E00079CFE5 /* bdlutes_musicbox.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = bdlutes_musicbox.sf2; path = SF2/bdlutes_musicbox.sf2; sourceTree = SOURCE_ROOT; };
+		BC85E8B4179C48E00079CFE5 /* music box.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "music box.sf2"; path = "SF2/music box.sf2"; sourceTree = SOURCE_ROOT; };
+		BC85E8B5179C48E00079CFE5 /* xylophone esmart.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "xylophone esmart.sf2"; path = "SF2/xylophone esmart.sf2"; sourceTree = SOURCE_ROOT; };
+		BC85E8BC179C49B30079CFE5 /* DDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDCell.h; sourceTree = "<group>"; };
+		BC85E8BD179C49B30079CFE5 /* DDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCell.m; sourceTree = "<group>"; };
+		BC85E8C1179C49E40079CFE5 /* DDFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFoodCell.h; sourceTree = "<group>"; };
+		BC85E8C2179C49E40079CFE5 /* DDFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFoodCell.m; sourceTree = "<group>"; };
+		BC85E8C4179C4A330079CFE5 /* DDLifeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLifeCell.h; sourceTree = "<group>"; };
+		BC85E8C5179C4A330079CFE5 /* DDLifeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLifeCell.m; sourceTree = "<group>"; };
+		BC85E8C7179C4B8B0079CFE5 /* NSMutableArray+Counting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Counting.h"; sourceTree = "<group>"; };
+		BC85E8C8179C4B8B0079CFE5 /* NSMutableArray+Counting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Counting.m"; sourceTree = "<group>"; };
+		BC85E8CA179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = fmtoy_pianoish.sf2; path = SF2/fmtoy_pianoish.sf2; sourceTree = SOURCE_ROOT; };
 		BCB5BF5A17916BF7006C3C30 /* DDAbstractGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractGameOfLife.h; sourceTree = "<group>"; };
 		BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractGameOfLife.m; sourceTree = "<group>"; };
 		BCB5BF6117917025006C3C30 /* DDGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDGridView.h; sourceTree = "<group>"; };
@@ -174,6 +196,8 @@
 		BC24E0841791673D00F1674E /* Cellular-Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				BC85E8C7179C4B8B0079CFE5 /* NSMutableArray+Counting.h */,
+				BC85E8C8179C4B8B0079CFE5 /* NSMutableArray+Counting.m */,
 				BCB5BF5817916BB7006C3C30 /* Model */,
 				BCB5BF5717916BB0006C3C30 /* Views */,
 				BC85E8B1179C06CF0079CFE5 /* Protocols */,
@@ -190,6 +214,11 @@
 		BC24E0851791673D00F1674E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC85E8CA179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 */,
+				BC85E8B2179C48E00079CFE5 /* alex glockenspiel.sf2 */,
+				BC85E8B3179C48E00079CFE5 /* bdlutes_musicbox.sf2 */,
+				BC85E8B4179C48E00079CFE5 /* music box.sf2 */,
+				BC85E8B5179C48E00079CFE5 /* xylophone esmart.sf2 */,
 				BC24E114179168BE00F1674E /* TODO */,
 				BC24E0861791673D00F1674E /* Cellular-Sounds-Info.plist */,
 				BC24E0871791673D00F1674E /* InfoPlist.strings */,
@@ -256,6 +285,30 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		BC85E8BF179C49BA0079CFE5 /* Reactive */ = {
+			isa = PBXGroup;
+			children = (
+				BC85E8AD179C04A20079CFE5 /* DDReactiveGameOfLife.h */,
+				BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */,
+				BC85E8BC179C49B30079CFE5 /* DDCell.h */,
+				BC85E8BD179C49B30079CFE5 /* DDCell.m */,
+				BC85E8C1179C49E40079CFE5 /* DDFoodCell.h */,
+				BC85E8C2179C49E40079CFE5 /* DDFoodCell.m */,
+				BC85E8C4179C4A330079CFE5 /* DDLifeCell.h */,
+				BC85E8C5179C4A330079CFE5 /* DDLifeCell.m */,
+			);
+			name = Reactive;
+			sourceTree = "<group>";
+		};
+		BC85E8C0179C49C10079CFE5 /* Conway */ = {
+			isa = PBXGroup;
+			children = (
+				BCB5BF67179180FF006C3C30 /* DDConwaysGameOfLife.h */,
+				BCB5BF68179180FF006C3C30 /* DDConwaysGameOfLife.m */,
+			);
+			name = Conway;
+			sourceTree = "<group>";
+		};
 		BCB5BF5717916BB0006C3C30 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,10 +325,8 @@
 			children = (
 				BCB5BF5A17916BF7006C3C30 /* DDAbstractGameOfLife.h */,
 				BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */,
-				BC85E8AD179C04A20079CFE5 /* DDReactiveGameOfLife.h */,
-				BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */,
-				BCB5BF67179180FF006C3C30 /* DDConwaysGameOfLife.h */,
-				BCB5BF68179180FF006C3C30 /* DDConwaysGameOfLife.m */,
+				BC85E8BF179C49BA0079CFE5 /* Reactive */,
+				BC85E8C0179C49C10079CFE5 /* Conway */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -373,8 +424,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC85E8B8179C48E00079CFE5 /* music box.sf2 in Resources */,
+				BC85E8B6179C48E00079CFE5 /* alex glockenspiel.sf2 in Resources */,
 				BC24E0971791673D00F1674E /* Images.xcassets in Resources */,
 				BC24E0891791673D00F1674E /* InfoPlist.strings in Resources */,
+				BC85E8CB179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 in Resources */,
+				BC85E8B9179C48E00079CFE5 /* xylophone esmart.sf2 in Resources */,
+				BC85E8B7179C48E00079CFE5 /* bdlutes_musicbox.sf2 in Resources */,
 				BC24E0921791673D00F1674E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,12 +486,15 @@
 				BC24E0F21791679A00F1674E /* AudioManager.m in Sources */,
 				BC24E0F71791679A00F1674E /* BMidiNote.m in Sources */,
 				BC24E08F1791673D00F1674E /* DDAppDelegate.m in Sources */,
+				BC85E8BE179C49B30079CFE5 /* DDCell.m in Sources */,
 				BC24E0F91791679A00F1674E /* BSequence.m in Sources */,
 				BCB5BF6317917025006C3C30 /* DDGridView.m in Sources */,
 				BC24E0F61791679A00F1674E /* BMidiManager.m in Sources */,
 				BC85E8AF179C04A20079CFE5 /* DDReactiveGameOfLife.m in Sources */,
 				BC24E0FB1791679A00F1674E /* BTempoEvent.m in Sources */,
+				BC85E8C9179C4B8B0079CFE5 /* NSMutableArray+Counting.m in Sources */,
 				BC24E0F81791679A00F1674E /* BObjectPool.m in Sources */,
+				BC85E8C3179C49E40079CFE5 /* DDFoodCell.m in Sources */,
 				BC24E0FA1791679A00F1674E /* BSequencePlayer.m in Sources */,
 				BC24E0F41791679A00F1674E /* BMidiClock.m in Sources */,
 				BC24E08B1791673D00F1674E /* main.m in Sources */,
@@ -446,6 +505,7 @@
 				BC41E0271792FD490087A109 /* DDSettingsViewController.m in Sources */,
 				BCB5BF5C17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */,
 				BC24E0F31791679A00F1674E /* BChannelEvent.m in Sources */,
+				BC85E8C6179C4A330079CFE5 /* DDLifeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

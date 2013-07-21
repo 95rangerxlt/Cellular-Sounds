@@ -17,4 +17,5 @@ typedef enum {
 @interface DDSettingsViewController : UIViewController
 @property (nonatomic) DDSettingsType settingsType;
 @property (nonatomic, weak) id <DDSettingsResponder> objectToChange;
+@property (nonatomic, copy) NSString *title;
 @end

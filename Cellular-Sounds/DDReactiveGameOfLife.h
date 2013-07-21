@@ -9,5 +9,5 @@
 #import "DDAbstractGameOfLife.h"
 
 @interface DDReactiveGameOfLife : DDAbstractGameOfLife
-
+-(id)initWithRows:(NSUInteger)rows cols:(NSUInteger)cols seed:(NSUInteger)seed;
 @end

@@ -18,6 +18,10 @@
 #import "DDSegmentedControl.h"
 #import "DDSettingsViewController.h"
 #import "DDSettingsResponder.h"
+#import "DDReactiveGameOfLife.h"
+#import "DDCell.h"
+#import "DDLifeCell.h"
+#import "DDFoodCell.h"
 
 #define kDodgerBlueColor [UIColor colorWithRed:0 green:0.478431f blue:1.0f alpha:1.0f]
 #define kDarkOrangeColor [UIColor colorWithRed:1.0f green:0.478431f blue:0 alpha:1.0f]
@@ -71,7 +75,8 @@
   if(!_games)
   {
     _games = [NSMutableArray arrayWithCapacity:4];
-    for(int i = 0; i < 4; i ++)
+    _games[0] = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:12];
+    for(int i = 1; i < 4; i ++)
     {
       _games[i] = [[DDConwaysGameOfLife alloc] initWithRows:self.numRows cols:self.numCols];
       ((DDConwaysGameOfLife *)_games[i]).delegate = self;
@@ -186,10 +191,19 @@
 
 -(UIColor *)gridView:(DDGridView *)gridView colorForCellContents:(id)cellContents
 {
-  NSInteger cell = [cellContents integerValue];
-  if(cell)
+  if([cellContents isKindOfClass:[NSNumber class]])
   {
-    return self.colors[cell - 1];
+    NSInteger cell = [cellContents integerValue];
+    if(cell)
+    {
+      return self.colors[cell - 1];
+    }
+  }
+  else if([cellContents isKindOfClass:[DDLifeCell class]])
+  {
+    DDLifeCell *cell = (DDLifeCell *)cellContents;
+    UIColor *cellColor = self.colors[cell.species];
+    return [cellColor colorWithAlphaComponent:((float)cell.currentLife / cell.startingLife)];
   }
   return [UIColor clearColor];
 }
@@ -214,7 +228,7 @@
   self.midiClock.tickResolution = 1;
   
   self.audioManager = [[AudioManager alloc] init];
-  [self.audioManager addVoice:@"c0" withSound:@"alex glockenspiel" withPatch:0 withVolume:1];
+  [self.audioManager addVoice:@"c0" withSound:@"fmtoy_pianoish" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c1" withSound:@"bdlutes_musicbox" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c2" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c3" withSound:@"music box" withPatch:1 withVolume:1];
@@ -400,7 +414,17 @@
         NSInteger dt = row * self.lineDeltaTime;
         if([[notes allKeys] containsObject:currentCol])
         {
-          if([currentGrid[row][col] intValue])
+          id cell = currentGrid[row][col];
+          NSInteger cellValue = 0;
+          if([cell isKindOfClass:[NSNumber class]])
+          {
+            cellValue = [cell integerValue];
+          }
+          else if([cell isKindOfClass:[DDLifeCell class]])
+          {
+            cellValue = ((DDLifeCell *)cell).species;
+          }
+          if(cellValue)
           {
             //Update the note in the dictionary
             BMidiNote *note = notes[currentCol];
@@ -422,12 +446,28 @@
         }
         else
         {
-          if((channel = [currentGrid[row][col] intValue]))
+          id cell = currentGrid[row][col];
+          UInt8 velocity = 127;
+          if([cell isKindOfClass:[DDLifeCell class]])
+          {
+            DDLifeCell *lifeCell = (DDLifeCell *)cell;
+            channel = ((DDLifeCell *)cell).species;
+            velocity = (UInt8)(velocity * (float)lifeCell.currentLife / lifeCell.startingLife);
+          }
+          else if([cell isKindOfClass:[NSNumber class]])
+          {
+            channel = [cell integerValue];
+          }
+          else
+          {
+            channel = 0;
+          }
+          if(channel)
           {
             //Create a new note and insert it into the dictionary
             BMidiNote *note = [[BMidiNote alloc] init];
             note.channel = (channel - 1);
-            note.velocity = 127;
+            note.velocity = velocity;
 #warning TODO: multiple games
             note.note = [self convertToMidiNoteNumber:col game:0];
             [note setStartTime:(startTime + dt)];

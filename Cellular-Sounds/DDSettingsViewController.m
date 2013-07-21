@@ -9,15 +9,20 @@
 #import "DDSettingsViewController.h"
 
 @interface DDSettingsViewController ()
-
+@property (nonatomic, strong) NSMutableArray *uiElements;
 @end
 
 @implementation DDSettingsViewController
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 	// Do any additional setup after loading the view.
+  self.uiElements = [NSMutableArray array];
+  for(NSString *key in [self.objectToChange allKeys])
+  {
+    
+  }
 }
 
 @end
