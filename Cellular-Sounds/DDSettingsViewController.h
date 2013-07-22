@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DDSettingsResponder.h"
+#import "DDAbstractGameOfLife.h"
 
 typedef enum {
   Color,
@@ -16,6 +16,7 @@ typedef enum {
 
 @interface DDSettingsViewController : UIViewController
 @property (nonatomic) DDSettingsType settingsType;
-@property (nonatomic, weak) id <DDSettingsResponder> objectToChange;
+@property (nonatomic, weak) DDAbstractGameOfLife *game;
+@property (nonatomic) NSUInteger channel;
 @property (nonatomic, copy) NSString *title;
 @end

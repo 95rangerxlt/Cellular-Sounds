@@ -27,4 +27,5 @@
 @property (nonatomic, weak) id <DDGridViewDelegate> delegate;
 // Activates the given (row, col)
 -(void)activateRow:(NSUInteger)row col:(NSUInteger)col color:(UIColor *)color;
+-(void)hightlightRow:(NSUInteger)row;
 @end

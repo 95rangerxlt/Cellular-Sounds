@@ -75,9 +75,12 @@
   if(!_games)
   {
     _games = [NSMutableArray arrayWithCapacity:4];
-    _games[0] = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:129];
-    ((DDReactiveGameOfLife *)_games[0]).on = YES;
-    ((DDReactiveGameOfLife *)_games[0]).delegate = self;
+    DDReactiveGameOfLife *game = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:time(NULL)];
+    game.on = YES;
+    game.delegate = self;
+    game.cellSpawnProbability = 0.04f;
+    game.foodSpawnProbability = 0.04f;
+    _games[0] = game;
     for(int i = 1; i < 4; i ++)
     {
       _games[i] = [[DDConwaysGameOfLife alloc] initWithRows:self.numRows cols:self.numCols];
@@ -172,7 +175,7 @@
   [subviews[1] setTintColor:kDarkViolet];
   [subviews[0] setTintColor:kDeepPinkColor];
   self.colors = @[kDodgerBlueColor, kDarkOrangeColor, kDarkViolet, kDeepPinkColor];
-  self.roots = [@[@(48), @(60), @(72), @(84)] mutableCopy];
+  self.roots = [@[@(36), @(48), @(60), @(72)] mutableCopy];
   self.scales = [@[@(0), @(0), @(0), @(0)] mutableCopy];
   [self setupAudio];
 }
@@ -207,7 +210,7 @@
     UIColor *cellColor = self.colors[cell.species];
     return [cellColor colorWithAlphaComponent:((float)cell.currentLife / cell.startingLife)];
   }
-  return [UIColor clearColor];
+  return [UIColor lightGrayColor];
 }
 
 -(void)gridView:(DDGridView *)gridView didDetectTouchAtRow:(NSUInteger)row col:(NSUInteger)col justStarted:(BOOL)justStarted
@@ -231,7 +234,7 @@
   self.midiClock.tickResolution = 1;
   
   self.audioManager = [[AudioManager alloc] init];
-  [self.audioManager addVoice:@"c0" withSound:@"fmtoy_pianoish" withPatch:0 withVolume:1];
+  [self.audioManager addVoice:@"c0" withSound:@"doublebass pibox v2" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c1" withSound:@"bdlutes_musicbox" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c2" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c3" withSound:@"music box" withPatch:1 withVolume:1];

@@ -9,5 +9,7 @@
 #import "DDAbstractGameOfLife.h"
 
 @interface DDReactiveGameOfLife : DDAbstractGameOfLife
+@property (nonatomic) double cellSpawnProbability;
+@property (nonatomic) double foodSpawnProbability;
 -(id)initWithRows:(NSUInteger)rows cols:(NSUInteger)cols seed:(NSUInteger)seed;
 @end

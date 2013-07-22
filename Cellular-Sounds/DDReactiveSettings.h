@@ -10,5 +10,4 @@
 #import "DDSettingsResponder.h"
 
 @interface DDReactiveSettings : NSObject <DDSettingsResponder>
-+(DDReactiveSettings *)settings;
 @end

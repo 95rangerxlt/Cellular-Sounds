@@ -19,10 +19,6 @@
   [super viewDidLoad];
 	// Do any additional setup after loading the view.
   self.uiElements = [NSMutableArray array];
-  for(NSString *key in [self.objectToChange allKeys])
-  {
-    
-  }
 }
 
 @end

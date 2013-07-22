@@ -35,6 +35,7 @@
 		BC41E0271792FD490087A109 /* DDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0261792FD490087A109 /* DDSettingsViewController.m */; };
 		BC6AFD0B179C5F20003AC5FC /* DDConwaysSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFD0A179C5F20003AC5FC /* DDConwaysSettings.m */; };
 		BC6AFD0F179C5F4F003AC5FC /* DDReactiveSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFD0E179C5F4F003AC5FC /* DDReactiveSettings.m */; };
+		BC838180179DAF3E00D464E7 /* doublebass pibox v2.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC83817F179DAF3E00D464E7 /* doublebass pibox v2.sf2 */; };
 		BC85E8AF179C04A20079CFE5 /* DDReactiveGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */; };
 		BC85E8B6179C48E00079CFE5 /* alex glockenspiel.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B2179C48E00079CFE5 /* alex glockenspiel.sf2 */; };
 		BC85E8B7179C48E00079CFE5 /* bdlutes_musicbox.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B3179C48E00079CFE5 /* bdlutes_musicbox.sf2 */; };
@@ -115,6 +116,7 @@
 		BC6AFD0A179C5F20003AC5FC /* DDConwaysSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDConwaysSettings.m; sourceTree = "<group>"; };
 		BC6AFD0D179C5F4F003AC5FC /* DDReactiveSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveSettings.h; sourceTree = "<group>"; };
 		BC6AFD0E179C5F4F003AC5FC /* DDReactiveSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveSettings.m; sourceTree = "<group>"; };
+		BC83817F179DAF3E00D464E7 /* doublebass pibox v2.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "doublebass pibox v2.sf2"; path = "SF2/doublebass pibox v2.sf2"; sourceTree = SOURCE_ROOT; };
 		BC85E8AD179C04A20079CFE5 /* DDReactiveGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveGameOfLife.h; sourceTree = "<group>"; };
 		BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveGameOfLife.m; sourceTree = "<group>"; };
 		BC85E8B0179C06CB0079CFE5 /* DDSettingsResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSettingsResponder.h; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				BC85E8B3179C48E00079CFE5 /* bdlutes_musicbox.sf2 */,
 				BC85E8B4179C48E00079CFE5 /* music box.sf2 */,
 				BC85E8B5179C48E00079CFE5 /* xylophone esmart.sf2 */,
+				BC83817F179DAF3E00D464E7 /* doublebass pibox v2.sf2 */,
 				BC24E114179168BE00F1674E /* TODO */,
 				BC24E0861791673D00F1674E /* Cellular-Sounds-Info.plist */,
 				BC24E0871791673D00F1674E /* InfoPlist.strings */,
@@ -449,6 +452,7 @@
 				BC85E8CB179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 in Resources */,
 				BC85E8B9179C48E00079CFE5 /* xylophone esmart.sf2 in Resources */,
 				BC85E8B7179C48E00079CFE5 /* bdlutes_musicbox.sf2 in Resources */,
+				BC838180179DAF3E00D464E7 /* doublebass pibox v2.sf2 in Resources */,
 				BC24E0921791673D00F1674E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,9 +12,6 @@
 #import "DDFoodCell.h"
 #import "NSMutableArray+Counting.h"
 
-#define kSpawnCellProbability 0.16f
-#define kSpawnFoodProbability 0.32f
-
 @interface DDReactiveGameOfLife ()
 @property (nonatomic, strong) NSMutableArray *grid;
 @property (nonatomic) NSUInteger seed;
@@ -23,6 +20,32 @@
 @end
 
 @implementation DDReactiveGameOfLife
+
+-(void)setCellSpawnProbability:(double)cellSpawnProbability
+{
+  if(cellSpawnProbability >= _foodSpawnProbability)
+  {
+    _cellSpawnProbability = _foodSpawnProbability + cellSpawnProbability;
+  }
+  else
+  {
+    _cellSpawnProbability = cellSpawnProbability;
+  }
+  DDLogVerbose(@"Cell spawn: %g", _cellSpawnProbability);
+}
+
+-(void)setFoodSpawnProbability:(double)foodSpawnProbability
+{
+  if(foodSpawnProbability >= _cellSpawnProbability)
+  {
+    _foodSpawnProbability = _cellSpawnProbability + foodSpawnProbability;
+  }
+  else
+  {
+    _foodSpawnProbability = foodSpawnProbability;
+  }
+  DDLogVerbose(@"Food spawn: %g", _foodSpawnProbability);
+}
 
 -(id)initWithRows:(NSUInteger)rows cols:(NSUInteger)cols seed:(NSUInteger)seed
 {
@@ -46,14 +69,18 @@
     for(NSUInteger j = 0; j < self.cols; j ++)
     {
       double spawn = ((double)rand()) / RAND_MAX;
-      if(spawn < kSpawnCellProbability)
+      if(spawn < self.cellSpawnProbability &&
+         (self.cellSpawnProbability < self.foodSpawnProbability ||
+          (self.cellSpawnProbability > self.foodSpawnProbability && spawn > self.foodSpawnProbability)))
       {
         DDLifeCell *cell =[[DDLifeCell alloc] init];
         cell.row = i;
         cell.col = j;
         row[j] = cell;
       }
-      else if(spawn < kSpawnFoodProbability)
+      else if(spawn < self.foodSpawnProbability &&
+              (self.foodSpawnProbability < self.cellSpawnProbability ||
+               (self.foodSpawnProbability > self.cellSpawnProbability && spawn > self.cellSpawnProbability)))
       {
         DDFoodCell *cell = [[DDFoodCell alloc] init];
         cell.row = i;
@@ -196,6 +223,30 @@
         else
         {
           [lifeCell update];
+        }
+      }
+      else if([cell isMemberOfClass:[DDCell class]])
+      {
+        double spawn = (double)rand() / RAND_MAX;
+        DDCell *newCell = nil;
+        if(spawn < self.cellSpawnProbability &&
+           (self.cellSpawnProbability < self.foodSpawnProbability ||
+            (self.cellSpawnProbability > self.foodSpawnProbability && spawn > self.foodSpawnProbability)))
+        {
+          newCell = [[DDLifeCell alloc] init];
+        }
+        else if(spawn < self.foodSpawnProbability &&
+                (self.foodSpawnProbability < self.cellSpawnProbability ||
+                 (self.foodSpawnProbability > self.cellSpawnProbability && spawn > self.cellSpawnProbability)))
+        {
+          newCell = [[DDFoodCell alloc] init];
+        }
+        if(newCell)
+        {
+          newCell.row = currentRowIndex;
+          newCell.col = currentColIndex;
+          self.grid[currentRowIndex][currentColIndex] = newCell;
+          DDLogVerbose(@"Spawned a new %@ cell at %d,%d", NSStringFromClass([newCell class]), currentRowIndex, currentColIndex);
         }
       }
       [allCols removeObjectAtIndex:currentColIndex];

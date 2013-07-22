@@ -28,7 +28,7 @@ typedef enum {
 // If the values are discrete, what are they ?
 -(NSArray *)acceptedValuesForDiscreteKey:(NSString *)key;
 // If they are continuous, what is the lower bound ?
--(double)lowerBoundForKey:(NSString *)key;
+-(double)lowerBoundForContinuousKey:(NSString *)key;
 // And what is the higher bound ?
--(double)higherBoundForKey:(NSString *)key;
+-(double)higherBoundForContinuousKey:(NSString *)key;
 @end

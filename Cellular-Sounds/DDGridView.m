@@ -14,6 +14,8 @@
 @property (nonatomic) CGFloat cellSide;
 @property (nonatomic) CGFloat xPadding;
 @property (nonatomic) CGFloat yPadding;
+@property (nonatomic) NSUInteger rowToHighlight;
+@property (nonatomic) BOOL shouldHighlightRow;
 @end
 
 @implementation DDGridView
@@ -39,6 +41,7 @@
   for(NSUInteger row = 0; row < numRows; row ++)
   {
     NSUInteger numCols = [self.grid[row] count];
+    CGFloat extra = self.shouldHighlightRow && row == self.rowToHighlight ? 2.0f : 0.0f;
     for(NSUInteger col = 0; col < numCols; col ++)
     {
       id cellContents = self.grid[row][col];
@@ -59,6 +62,7 @@
       [path stroke];
     }
   }
+  self.shouldHighlightRow = NO;
 }
 
 #pragma mark - Grid
@@ -84,6 +88,13 @@
 -(void)activateRow:(NSUInteger)row col:(NSUInteger)col color:(UIColor *)color
 {
   self.grid[row][col] = color;
+  [self setNeedsDisplay];
+}
+
+-(void)hightlightRow:(NSUInteger)row
+{
+  self.rowToHighlight = row;
+  self.shouldHighlightRow = YES;
   [self setNeedsDisplay];
 }
 
@@ -113,16 +124,6 @@
   [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
     [self handleTouch:(UITouch *)obj started:NO];
   }];
-}
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-  
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-  
 }
 
 @end
