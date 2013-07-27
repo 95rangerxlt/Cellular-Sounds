@@ -85,6 +85,16 @@
   [self setNeedsDisplay];
 }
 
+-(void)layoutSubviews
+{
+  [super layoutSubviews];
+  CGFloat cellWidth = self.bounds.size.width / self.lastNumCols;
+  CGFloat cellHeight = self.bounds.size.height / self.lastNumRows;
+  self.cellSide = (cellWidth > cellHeight) ? cellHeight : cellWidth;
+  self.yPadding = (cellWidth > cellHeight) ? 0.0f : (self.bounds.size.height - (self.lastNumRows * cellWidth)) / 2;
+  self.xPadding = (cellWidth > cellHeight) ? (self.bounds.size.width - (self.lastNumCols * cellHeight)) / 2 : 0.0f;
+}
+
 -(void)activateRow:(NSUInteger)row col:(NSUInteger)col color:(UIColor *)color
 {
   self.grid[row][col] = color;

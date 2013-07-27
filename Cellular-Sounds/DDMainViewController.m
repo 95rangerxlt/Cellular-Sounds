@@ -29,6 +29,8 @@
 #define kDeepPinkColor [UIColor colorWithRed:1.0f green:0 blue:0.478431f alpha:1.0f]
 
 @interface DDMainViewController () <DDGridViewDelegate, DDGameOfLifeDelegate, DDSettingsResponder>
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet DDGridView *gridView;
 @property (weak, nonatomic) IBOutlet DDSegmentedControl *gameSegmentedControl;
 @property (weak, nonatomic) IBOutlet DDSegmentedControl *colorSegmentedControl;
@@ -63,7 +65,7 @@
 -(void)audioLoop;
 -(void)updateSequence:(NSUInteger)timeInPulses;
 -(void)updatePool;
--(NSUInteger)convertToMidiNoteNumber:(NSUInteger)note game:(NSUInteger)game;
+-(NSUInteger)convertToMidiNoteNumber:(NSUInteger)note game:(NSUInteger)game voice:(NSInteger)voice;
 @end
 
 @implementation DDMainViewController
@@ -75,13 +77,19 @@
   if(!_games)
   {
     _games = [NSMutableArray arrayWithCapacity:4];
-    DDReactiveGameOfLife *game = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:time(NULL)];
-    game.on = YES;
+    DDReactiveGameOfLife *game = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:29];
+    game.on = NO;
     game.delegate = self;
     game.cellSpawnProbability = 0.04f;
     game.foodSpawnProbability = 0.04f;
     _games[0] = game;
-    for(int i = 1; i < 4; i ++)
+    DDReactiveGameOfLife *otherGame = [[DDReactiveGameOfLife alloc] initWithRows:self.numRows cols:self.numCols seed:58];
+    otherGame.on = NO;
+    otherGame.delegate = self;
+    otherGame.cellSpawnProbability = 0.04f;
+    otherGame.foodSpawnProbability = 0.04f;
+    _games[1] = otherGame;
+    for(int i = 2; i < 4; i ++)
     {
       _games[i] = [[DDConwaysGameOfLife alloc] initWithRows:self.numRows cols:self.numCols];
       ((DDConwaysGameOfLife *)_games[i]).delegate = self;
@@ -138,6 +146,16 @@
   LOG_RECT(selectedRect);
 }
 
+- (IBAction)resetPressed
+{
+  [self.currentGameOfLife clearGrid];
+}
+
+- (IBAction)stopPressed
+{
+  self.currentGameOfLife.on = !self.currentGameOfLife.on;
+}
+
 
 #pragma mark - Init
 
@@ -175,7 +193,7 @@
   [subviews[1] setTintColor:kDarkViolet];
   [subviews[0] setTintColor:kDeepPinkColor];
   self.colors = @[kDodgerBlueColor, kDarkOrangeColor, kDarkViolet, kDeepPinkColor];
-  self.roots = [@[@(36), @(48), @(60), @(72)] mutableCopy];
+  self.roots = [@[@(60), @(48), @(48), @(48), @(48), @(48), @(48), @(48)] mutableCopy];
   self.scales = [@[@(0), @(0), @(0), @(0)] mutableCopy];
   [self setupAudio];
 }
@@ -190,6 +208,17 @@
 {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+  [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+  [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+  [self.gridView setNeedsLayout];
 }
 
 #pragma mark - DDGridViewDelegate
@@ -234,10 +263,18 @@
   self.midiClock.tickResolution = 1;
   
   self.audioManager = [[AudioManager alloc] init];
+  
+  // First grid
   [self.audioManager addVoice:@"c0" withSound:@"doublebass pibox v2" withPatch:0 withVolume:1];
-  [self.audioManager addVoice:@"c1" withSound:@"bdlutes_musicbox" withPatch:0 withVolume:1];
-  [self.audioManager addVoice:@"c2" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
-  [self.audioManager addVoice:@"c3" withSound:@"music box" withPatch:1 withVolume:1];
+  [self.audioManager addVoice:@"c1" withSound:@"campbells_grand_xylophone" withPatch:0 withVolume:1];
+  [self.audioManager addVoice:@"c2" withSound:@"moog collection 2" withPatch:0 withVolume:1];
+  [self.audioManager addVoice:@"c3" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
+  // Second grid
+  [self.audioManager addVoice:@"c4" withSound:@"music box" withPatch:1 withVolume:1];
+  [self.audioManager addVoice:@"c5" withSound:@"bdlutes_musicbox" withPatch:0 withVolume:1];
+  [self.audioManager addVoice:@"c6" withSound:@"campbells_grand_xylophone" withPatch:0 withVolume:1];
+  [self.audioManager addVoice:@"c7" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
+  
   [self.audioManager startAudioGraph];
   
   self.lineDeltaTime = (self.midiClock.PPQN / 2);
@@ -410,7 +447,7 @@
   NSInteger channel = 0;
   NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
   NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
-  for(NSArray *currentGrid in grids)
+  for(NSInteger grid = 0; grid < 4; grid ++)
   {
     for(int row = 0; row < self.numRows; row ++)
     {
@@ -420,7 +457,7 @@
         NSInteger dt = row * self.lineDeltaTime;
         if([[notes allKeys] containsObject:currentCol])
         {
-          id cell = currentGrid[row][col];
+          id cell = grids[grid][row][col];
           NSInteger cellValue = 0;
           if([cell isKindOfClass:[NSNumber class]])
           {
@@ -452,7 +489,7 @@
         }
         else
         {
-          id cell = currentGrid[row][col];
+          id cell = grids[grid][row][col];
           UInt8 velocity = 127;
           if([cell isKindOfClass:[DDLifeCell class]])
           {
@@ -466,20 +503,21 @@
           }
           else if([cell isKindOfClass:[NSNumber class]])
           {
-            channel = [cell integerValue];
+            channel = [cell integerValue] - 1;
           }
           else
           {
             channel = 0;
           }
-          if(channel)
+          if(channel > 0)
           {
+            channel += grid * 4;
             //Create a new note and insert it into the dictionary
             BMidiNote *note = [[BMidiNote alloc] init];
             note.channel = (channel - 1);
             note.velocity = velocity;
 #warning TODO: multiple games
-            note.note = [self convertToMidiNoteNumber:col game:0];
+            note.note = [self convertToMidiNoteNumber:col game:0 voice:channel];
             [note setStartTime:(startTime + dt)];
             [note setDuration:self.lineDeltaTime];
             notes[currentCol] = note;
@@ -500,9 +538,9 @@
 }
 
 #warning TODO: multiple scales
--(NSUInteger)convertToMidiNoteNumber:(NSUInteger)note game:(NSUInteger)game
+-(NSUInteger)convertToMidiNoteNumber:(NSUInteger)note game:(NSUInteger)game voice:(NSInteger)voice
 {
-  NSInteger currentRoot = [self.roots[game] integerValue];
+  NSInteger currentRoot = [self.roots[voice] integerValue];
   NSInteger currentScale = [self.scales[game] integerValue];
   static NSArray *major = nil;
   if(!major) major = @[@(0), @(2), @(4), @(5), @(7), @(9), @(11)];

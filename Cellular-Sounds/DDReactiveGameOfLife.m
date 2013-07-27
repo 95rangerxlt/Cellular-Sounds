@@ -99,6 +99,20 @@
   }
 }
 
+-(void)clearGrid
+{
+  for(NSUInteger row = 0; row < self.rows; row ++)
+  {
+    for(NSUInteger col = 0; col < self.cols; col ++)
+    {
+      DDCell *cell = [[DDCell alloc] init];
+      cell.row = row;
+      cell.col = col;
+      self.grid[row][col] = cell;
+    }
+  }
+}
+
 -(void)performStep
 {
   if(!self.isOn)
@@ -159,7 +173,6 @@
             DDLifeCell *otherCell = (DDLifeCell *)cellToCheck;
             if(lifeCell.species == otherCell.species)
             {
-//              if(lifeCell.age >= kMinAgeForReproduction && otherCell.age >= kMinAgeForReproduction)
               if([lifeCell canReproduceWith:otherCell])
               {
                 // Check how much free space we have (around lifeCell)
@@ -199,6 +212,10 @@
                 lifeCell.row = rowToCheck;
                 lifeCell.col = colToCheck;
                 self.grid[rowToCheck][colToCheck] = lifeCell;
+                DDCell *newCell = [[DDCell alloc] init];
+                newCell.row = row;
+                newCell.col = col;
+                self.grid[row][col] = newCell;
               }
             }
           }

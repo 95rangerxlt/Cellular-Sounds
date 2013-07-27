@@ -41,6 +41,8 @@
 //
 // Resets the current state.
 -(void)reset;
+// Clears the current grid.
+-(void)clearGrid;
 // Performs a step over the whole grid.
 -(void)performStep;
 // Flips the cell at the given row,col to either the desired species or dead if it was already alive with the give species.

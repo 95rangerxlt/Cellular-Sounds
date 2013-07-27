@@ -87,6 +87,17 @@
   }
 }
 
+-(void)clearGrid
+{
+  for(NSUInteger row = 0; row < self.rows; row ++)
+  {
+    for(NSUInteger col = 0; col < self.cols; col ++)
+    {
+      self.grid[row][col] = @(0);
+    }
+  }
+}
+
 -(void)performStep
 {
   if(self.isOn)

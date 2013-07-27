@@ -62,7 +62,8 @@
     DDLogVerbose(@"One of the cells is dead. No fight!");
     return;
   }
-  if(self.currentLife > cell.currentLife)
+  // How to choose who attacks ?
+  if(rand() % self.currentLife > rand() % cell.currentLife)
   {
     cell.currentLife -= rand() % self.currentLife;
   }
@@ -93,7 +94,7 @@
 
 -(BOOL)isDead
 {
-  return !self.currentLife > 0;
+  return (self.currentLife <= 0);
 }
 
 -(BOOL)canReproduceWith:(DDLifeCell *)otherCell
@@ -114,6 +115,7 @@
     }
   }
   self.timeSinceLastReproduction = 0;
+  otherCell.timeSinceLastReproduction = 0;
   return spawnedCells;
 }
 

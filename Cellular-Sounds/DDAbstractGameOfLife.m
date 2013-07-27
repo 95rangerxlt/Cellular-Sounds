@@ -30,6 +30,11 @@
   NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);
 }
 
+-(void)clearGrid
+{
+  NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);
+}
+
 -(void)performStep
 {
   NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);

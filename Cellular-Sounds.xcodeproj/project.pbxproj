@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40FDA2963EF646D4AE8B244F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24756EF9B81E4A9B8B3A6C6B /* libPods.a */; };
+		BC01111317A3D76C0002CDF1 /* entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC01111217A3D76C0002CDF1 /* entypo.ttf */; };
 		BC24E07F1791673D00F1674E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC24E07E1791673D00F1674E /* Foundation.framework */; };
 		BC24E0811791673D00F1674E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC24E0801791673D00F1674E /* CoreGraphics.framework */; };
 		BC24E0831791673D00F1674E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC24E0821791673D00F1674E /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 		BC41E0271792FD490087A109 /* DDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC41E0261792FD490087A109 /* DDSettingsViewController.m */; };
 		BC6AFD0B179C5F20003AC5FC /* DDConwaysSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFD0A179C5F20003AC5FC /* DDConwaysSettings.m */; };
 		BC6AFD0F179C5F4F003AC5FC /* DDReactiveSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6AFD0E179C5F4F003AC5FC /* DDReactiveSettings.m */; };
+		BC801D9A17A3FEBF0069BE6C /* campbells_grand_xylophone.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC801D9917A3FEBF0069BE6C /* campbells_grand_xylophone.sf2 */; };
+		BC801D9C17A3FF3F0069BE6C /* moog collection 2.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC801D9B17A3FF3F0069BE6C /* moog collection 2.sf2 */; };
 		BC838180179DAF3E00D464E7 /* doublebass pibox v2.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC83817F179DAF3E00D464E7 /* doublebass pibox v2.sf2 */; };
 		BC85E8AF179C04A20079CFE5 /* DDReactiveGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */; };
 		BC85E8B6179C48E00079CFE5 /* alex glockenspiel.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B2179C48E00079CFE5 /* alex glockenspiel.sf2 */; };
@@ -67,6 +70,7 @@
 /* Begin PBXFileReference section */
 		24756EF9B81E4A9B8B3A6C6B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		476DE402898644F8A85825DE /* Pods/Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		BC01111217A3D76C0002CDF1 /* entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = entypo.ttf; sourceTree = "<group>"; };
 		BC24E07B1791673D00F1674E /* Cellular-Sounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cellular-Sounds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC24E07E1791673D00F1674E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC24E0801791673D00F1674E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +120,8 @@
 		BC6AFD0A179C5F20003AC5FC /* DDConwaysSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDConwaysSettings.m; sourceTree = "<group>"; };
 		BC6AFD0D179C5F4F003AC5FC /* DDReactiveSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveSettings.h; sourceTree = "<group>"; };
 		BC6AFD0E179C5F4F003AC5FC /* DDReactiveSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveSettings.m; sourceTree = "<group>"; };
+		BC801D9917A3FEBF0069BE6C /* campbells_grand_xylophone.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = campbells_grand_xylophone.sf2; path = SF2/campbells_grand_xylophone.sf2; sourceTree = SOURCE_ROOT; };
+		BC801D9B17A3FF3F0069BE6C /* moog collection 2.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "moog collection 2.sf2"; path = "SF2/moog collection 2.sf2"; sourceTree = SOURCE_ROOT; };
 		BC83817F179DAF3E00D464E7 /* doublebass pibox v2.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "doublebass pibox v2.sf2"; path = "SF2/doublebass pibox v2.sf2"; sourceTree = SOURCE_ROOT; };
 		BC85E8AD179C04A20079CFE5 /* DDReactiveGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveGameOfLife.h; sourceTree = "<group>"; };
 		BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveGameOfLife.m; sourceTree = "<group>"; };
@@ -223,12 +229,15 @@
 		BC24E0851791673D00F1674E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC01111217A3D76C0002CDF1 /* entypo.ttf */,
 				BC85E8CA179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 */,
 				BC85E8B2179C48E00079CFE5 /* alex glockenspiel.sf2 */,
 				BC85E8B3179C48E00079CFE5 /* bdlutes_musicbox.sf2 */,
 				BC85E8B4179C48E00079CFE5 /* music box.sf2 */,
 				BC85E8B5179C48E00079CFE5 /* xylophone esmart.sf2 */,
 				BC83817F179DAF3E00D464E7 /* doublebass pibox v2.sf2 */,
+				BC801D9917A3FEBF0069BE6C /* campbells_grand_xylophone.sf2 */,
+				BC801D9B17A3FF3F0069BE6C /* moog collection 2.sf2 */,
 				BC24E114179168BE00F1674E /* TODO */,
 				BC24E0861791673D00F1674E /* Cellular-Sounds-Info.plist */,
 				BC24E0871791673D00F1674E /* InfoPlist.strings */,
@@ -447,10 +456,13 @@
 			files = (
 				BC85E8B8179C48E00079CFE5 /* music box.sf2 in Resources */,
 				BC85E8B6179C48E00079CFE5 /* alex glockenspiel.sf2 in Resources */,
+				BC801D9C17A3FF3F0069BE6C /* moog collection 2.sf2 in Resources */,
 				BC24E0971791673D00F1674E /* Images.xcassets in Resources */,
 				BC24E0891791673D00F1674E /* InfoPlist.strings in Resources */,
 				BC85E8CB179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 in Resources */,
+				BC01111317A3D76C0002CDF1 /* entypo.ttf in Resources */,
 				BC85E8B9179C48E00079CFE5 /* xylophone esmart.sf2 in Resources */,
+				BC801D9A17A3FEBF0069BE6C /* campbells_grand_xylophone.sf2 in Resources */,
 				BC85E8B7179C48E00079CFE5 /* bdlutes_musicbox.sf2 in Resources */,
 				BC838180179DAF3E00D464E7 /* doublebass pibox v2.sf2 in Resources */,
 				BC24E0921791673D00F1674E /* Main.storyboard in Resources */,
