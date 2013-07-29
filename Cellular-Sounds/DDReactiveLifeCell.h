@@ -16,7 +16,7 @@ typedef enum {
   Right
 } CellOrientation;
 
-@interface DDLifeCell : DDCell
+@interface DDReactiveLifeCell : DDCell
 @property (nonatomic, readonly) NSUInteger species;
 @property (nonatomic) NSInteger currentLife;
 @property (nonatomic) NSInteger startingLife;
@@ -24,11 +24,11 @@ typedef enum {
 -(id)init;
 -(id)initWithSpecies:(NSUInteger)species;
 -(void)eat:(DDFoodCell *)food;
--(void)fight:(DDLifeCell *)cell;
+-(void)fight:(DDReactiveLifeCell *)cell;
 -(BOOL)shouldMove;
 -(void)didMove;
 -(BOOL)isDead;
 -(void)update;
--(BOOL)canReproduceWith:(DDLifeCell *)otherCell;
--(NSMutableArray *)reproduceWith:(DDLifeCell *)otherCell freeSpace:(NSUInteger)freeSpace;
+-(BOOL)canReproduceWith:(DDReactiveLifeCell *)otherCell;
+-(NSMutableArray *)reproduceWith:(DDReactiveLifeCell *)otherCell freeSpace:(NSUInteger)freeSpace;
 @end

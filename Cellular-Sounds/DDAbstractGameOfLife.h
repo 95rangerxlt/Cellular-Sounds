@@ -47,4 +47,6 @@
 -(void)performStep;
 // Flips the cell at the given row,col to either the desired species or dead if it was already alive with the give species.
 -(void)flipCellAtRow:(NSUInteger)row col:(NSUInteger)col species:(NSUInteger)species started:(BOOL)started;
+// Get the cell at the given row/col
+-(id)cellForRow:(NSUInteger)row col:(NSUInteger)col;
 @end

@@ -46,7 +46,7 @@
 		BC85E8B9179C48E00079CFE5 /* xylophone esmart.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8B5179C48E00079CFE5 /* xylophone esmart.sf2 */; };
 		BC85E8BE179C49B30079CFE5 /* DDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8BD179C49B30079CFE5 /* DDCell.m */; };
 		BC85E8C3179C49E40079CFE5 /* DDFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8C2179C49E40079CFE5 /* DDFoodCell.m */; };
-		BC85E8C6179C4A330079CFE5 /* DDLifeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8C5179C4A330079CFE5 /* DDLifeCell.m */; };
+		BC85E8C6179C4A330079CFE5 /* DDReactiveLifeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8C5179C4A330079CFE5 /* DDReactiveLifeCell.m */; };
 		BC85E8C9179C4B8B0079CFE5 /* NSMutableArray+Counting.m in Sources */ = {isa = PBXBuildFile; fileRef = BC85E8C8179C4B8B0079CFE5 /* NSMutableArray+Counting.m */; };
 		BC85E8CB179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC85E8CA179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 */; };
 		BCB5BF5C17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */; };
@@ -55,6 +55,18 @@
 		BCB5BF6617917572006C3C30 /* DDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF6517917572006C3C30 /* DDMainViewController.m */; };
 		BCB5BF69179180FF006C3C30 /* DDConwaysGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF68179180FF006C3C30 /* DDConwaysGameOfLife.m */; };
 		BCB5BF6A179180FF006C3C30 /* DDConwaysGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5BF68179180FF006C3C30 /* DDConwaysGameOfLife.m */; };
+		BCD07E2F17A6F7080047EE26 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCD07E2E17A6F7080047EE26 /* Crashlytics.framework */; };
+		BCD1FDE617A70EC000C08B82 /* DDEvolvingGameOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDE517A70EC000C08B82 /* DDEvolvingGameOfLife.m */; };
+		BCD1FDEC17A70FE200C08B82 /* DDEvolvingLifeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDEB17A70FE200C08B82 /* DDEvolvingLifeCell.m */; };
+		BCD1FE0517A711DE00C08B82 /* AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDF017A711DE00C08B82 /* AQPlayer.m */; };
+		BCD1FE0617A711DE00C08B82 /* AQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDF217A711DE00C08B82 /* AQSound.m */; };
+		BCD1FE0717A711DE00C08B82 /* AQSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDF417A711DE00C08B82 /* AQSynth.m */; };
+		BCD1FE0917A711DE00C08B82 /* PulseOrgan.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDF917A711DE00C08B82 /* PulseOrgan.m */; };
+		BCD1FE0A17A711DE00C08B82 /* SawBrass.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDFB17A711DE00C08B82 /* SawBrass.m */; };
+		BCD1FE0B17A711DE00C08B82 /* SinePiano.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDFD17A711DE00C08B82 /* SinePiano.m */; };
+		BCD1FE0C17A711DE00C08B82 /* SquareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FDFF17A711DE00C08B82 /* SquareStrings.m */; };
+		BCD1FE0D17A711DE00C08B82 /* TriangleFlute.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FE0117A711DE00C08B82 /* TriangleFlute.m */; };
+		BCD1FE0E17A711DE00C08B82 /* Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD1FE0317A711DE00C08B82 /* Voice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,8 +146,8 @@
 		BC85E8BD179C49B30079CFE5 /* DDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDCell.m; sourceTree = "<group>"; };
 		BC85E8C1179C49E40079CFE5 /* DDFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFoodCell.h; sourceTree = "<group>"; };
 		BC85E8C2179C49E40079CFE5 /* DDFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFoodCell.m; sourceTree = "<group>"; };
-		BC85E8C4179C4A330079CFE5 /* DDLifeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLifeCell.h; sourceTree = "<group>"; };
-		BC85E8C5179C4A330079CFE5 /* DDLifeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLifeCell.m; sourceTree = "<group>"; };
+		BC85E8C4179C4A330079CFE5 /* DDReactiveLifeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDReactiveLifeCell.h; sourceTree = "<group>"; };
+		BC85E8C5179C4A330079CFE5 /* DDReactiveLifeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDReactiveLifeCell.m; sourceTree = "<group>"; };
 		BC85E8C7179C4B8B0079CFE5 /* NSMutableArray+Counting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Counting.h"; sourceTree = "<group>"; };
 		BC85E8C8179C4B8B0079CFE5 /* NSMutableArray+Counting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Counting.m"; sourceTree = "<group>"; };
 		BC85E8CA179C4BFF0079CFE5 /* fmtoy_pianoish.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = fmtoy_pianoish.sf2; path = SF2/fmtoy_pianoish.sf2; sourceTree = SOURCE_ROOT; };
@@ -147,6 +159,29 @@
 		BCB5BF6517917572006C3C30 /* DDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainViewController.m; sourceTree = "<group>"; };
 		BCB5BF67179180FF006C3C30 /* DDConwaysGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDConwaysGameOfLife.h; sourceTree = "<group>"; };
 		BCB5BF68179180FF006C3C30 /* DDConwaysGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDConwaysGameOfLife.m; sourceTree = "<group>"; };
+		BCD07E2E17A6F7080047EE26 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		BCD1FDE417A70EC000C08B82 /* DDEvolvingGameOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDEvolvingGameOfLife.h; sourceTree = "<group>"; };
+		BCD1FDE517A70EC000C08B82 /* DDEvolvingGameOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEvolvingGameOfLife.m; sourceTree = "<group>"; };
+		BCD1FDEA17A70FE200C08B82 /* DDEvolvingLifeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDEvolvingLifeCell.h; sourceTree = "<group>"; };
+		BCD1FDEB17A70FE200C08B82 /* DDEvolvingLifeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDEvolvingLifeCell.m; sourceTree = "<group>"; };
+		BCD1FDEF17A711DE00C08B82 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
+		BCD1FDF017A711DE00C08B82 /* AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPlayer.m; sourceTree = "<group>"; };
+		BCD1FDF117A711DE00C08B82 /* AQSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSound.h; sourceTree = "<group>"; };
+		BCD1FDF217A711DE00C08B82 /* AQSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSound.m; sourceTree = "<group>"; };
+		BCD1FDF317A711DE00C08B82 /* AQSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSynth.h; sourceTree = "<group>"; };
+		BCD1FDF417A711DE00C08B82 /* AQSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSynth.m; sourceTree = "<group>"; };
+		BCD1FDF817A711DE00C08B82 /* PulseOrgan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseOrgan.h; sourceTree = "<group>"; };
+		BCD1FDF917A711DE00C08B82 /* PulseOrgan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseOrgan.m; sourceTree = "<group>"; };
+		BCD1FDFA17A711DE00C08B82 /* SawBrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SawBrass.h; sourceTree = "<group>"; };
+		BCD1FDFB17A711DE00C08B82 /* SawBrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SawBrass.m; sourceTree = "<group>"; };
+		BCD1FDFC17A711DE00C08B82 /* SinePiano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinePiano.h; sourceTree = "<group>"; };
+		BCD1FDFD17A711DE00C08B82 /* SinePiano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinePiano.m; sourceTree = "<group>"; };
+		BCD1FDFE17A711DE00C08B82 /* SquareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareStrings.h; sourceTree = "<group>"; };
+		BCD1FDFF17A711DE00C08B82 /* SquareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareStrings.m; sourceTree = "<group>"; };
+		BCD1FE0017A711DE00C08B82 /* TriangleFlute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleFlute.h; sourceTree = "<group>"; };
+		BCD1FE0117A711DE00C08B82 /* TriangleFlute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleFlute.m; sourceTree = "<group>"; };
+		BCD1FE0217A711DE00C08B82 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
+		BCD1FE0317A711DE00C08B82 /* Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +192,7 @@
 				BC24E0811791673D00F1674E /* CoreGraphics.framework in Frameworks */,
 				BC24E0831791673D00F1674E /* UIKit.framework in Frameworks */,
 				BC24E07F1791673D00F1674E /* Foundation.framework in Frameworks */,
+				BCD07E2F17A6F7080047EE26 /* Crashlytics.framework in Frameworks */,
 				40FDA2963EF646D4AE8B244F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,6 +213,7 @@
 		BC24E0721791673D00F1674E = {
 			isa = PBXGroup;
 			children = (
+				BCD1FDED17A711DE00C08B82 /* WaveTableSynth */,
 				BC24E0B31791679A00F1674E /* co.deluge.advancedmidi */,
 				BC24E0841791673D00F1674E /* Cellular-Sounds */,
 				BC24E0A31791673D00F1674E /* Cellular-SoundsTests */,
@@ -198,6 +235,7 @@
 		BC24E07D1791673D00F1674E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCD07E2E17A6F7080047EE26 /* Crashlytics.framework */,
 				BC24E07E1791673D00F1674E /* Foundation.framework */,
 				BC24E0801791673D00F1674E /* CoreGraphics.framework */,
 				BC24E0821791673D00F1674E /* UIKit.framework */,
@@ -318,14 +356,9 @@
 		BC85E8BF179C49BA0079CFE5 /* Reactive */ = {
 			isa = PBXGroup;
 			children = (
+				BCD1FDE817A70F4300C08B82 /* Cells */,
 				BC85E8AD179C04A20079CFE5 /* DDReactiveGameOfLife.h */,
 				BC85E8AE179C04A20079CFE5 /* DDReactiveGameOfLife.m */,
-				BC85E8BC179C49B30079CFE5 /* DDCell.h */,
-				BC85E8BD179C49B30079CFE5 /* DDCell.m */,
-				BC85E8C1179C49E40079CFE5 /* DDFoodCell.h */,
-				BC85E8C2179C49E40079CFE5 /* DDFoodCell.m */,
-				BC85E8C4179C4A330079CFE5 /* DDLifeCell.h */,
-				BC85E8C5179C4A330079CFE5 /* DDLifeCell.m */,
 			);
 			name = Reactive;
 			sourceTree = "<group>";
@@ -355,6 +388,7 @@
 			children = (
 				BCB5BF5A17916BF7006C3C30 /* DDAbstractGameOfLife.h */,
 				BCB5BF5B17916BF7006C3C30 /* DDAbstractGameOfLife.m */,
+				BCD1FDE717A70EC700C08B82 /* Evolving */,
 				BC85E8BF179C49BA0079CFE5 /* Reactive */,
 				BC85E8C0179C49C10079CFE5 /* Conway */,
 			);
@@ -372,6 +406,80 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		BCD1FDE717A70EC700C08B82 /* Evolving */ = {
+			isa = PBXGroup;
+			children = (
+				BCD1FDE917A70FCF00C08B82 /* Cells */,
+				BCD1FDE417A70EC000C08B82 /* DDEvolvingGameOfLife.h */,
+				BCD1FDE517A70EC000C08B82 /* DDEvolvingGameOfLife.m */,
+			);
+			name = Evolving;
+			sourceTree = "<group>";
+		};
+		BCD1FDE817A70F4300C08B82 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BC85E8BC179C49B30079CFE5 /* DDCell.h */,
+				BC85E8BD179C49B30079CFE5 /* DDCell.m */,
+				BC85E8C1179C49E40079CFE5 /* DDFoodCell.h */,
+				BC85E8C2179C49E40079CFE5 /* DDFoodCell.m */,
+				BC85E8C4179C4A330079CFE5 /* DDReactiveLifeCell.h */,
+				BC85E8C5179C4A330079CFE5 /* DDReactiveLifeCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		BCD1FDE917A70FCF00C08B82 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BCD1FDEA17A70FE200C08B82 /* DDEvolvingLifeCell.h */,
+				BCD1FDEB17A70FE200C08B82 /* DDEvolvingLifeCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		BCD1FDED17A711DE00C08B82 /* WaveTableSynth */ = {
+			isa = PBXGroup;
+			children = (
+				BCD1FDEF17A711DE00C08B82 /* AQPlayer.h */,
+				BCD1FDF017A711DE00C08B82 /* AQPlayer.m */,
+				BCD1FDF117A711DE00C08B82 /* AQSound.h */,
+				BCD1FDF217A711DE00C08B82 /* AQSound.m */,
+				BCD1FDF317A711DE00C08B82 /* AQSynth.h */,
+				BCD1FDF417A711DE00C08B82 /* AQSynth.m */,
+				BCD1FDF617A711DE00C08B82 /* Voices */,
+			);
+			name = WaveTableSynth;
+			path = ../WaveTableSynth;
+			sourceTree = "<group>";
+		};
+		BCD1FDF617A711DE00C08B82 /* Voices */ = {
+			isa = PBXGroup;
+			children = (
+				BCD1FDF717A711DE00C08B82 /* The Sounds */,
+				BCD1FE0217A711DE00C08B82 /* Voice.h */,
+				BCD1FE0317A711DE00C08B82 /* Voice.m */,
+			);
+			path = Voices;
+			sourceTree = "<group>";
+		};
+		BCD1FDF717A711DE00C08B82 /* The Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BCD1FDF817A711DE00C08B82 /* PulseOrgan.h */,
+				BCD1FDF917A711DE00C08B82 /* PulseOrgan.m */,
+				BCD1FDFA17A711DE00C08B82 /* SawBrass.h */,
+				BCD1FDFB17A711DE00C08B82 /* SawBrass.m */,
+				BCD1FDFC17A711DE00C08B82 /* SinePiano.h */,
+				BCD1FDFD17A711DE00C08B82 /* SinePiano.m */,
+				BCD1FDFE17A711DE00C08B82 /* SquareStrings.h */,
+				BCD1FDFF17A711DE00C08B82 /* SquareStrings.m */,
+				BCD1FE0017A711DE00C08B82 /* TriangleFlute.h */,
+				BCD1FE0117A711DE00C08B82 /* TriangleFlute.m */,
+			);
+			path = "The Sounds";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -384,6 +492,7 @@
 				BC24E0781791673D00F1674E /* Frameworks */,
 				BC24E0791791673D00F1674E /* Resources */,
 				F96F2FE595FC449486D54913 /* Copy Pods Resources */,
+				BCD07E2D17A6F6E50047EE26 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -480,6 +589,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		BCD07E2D17A6F6E50047EE26 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 266d69aa0f455c6764be63227a5e1d51ece58911\n";
+		};
 		F46C1ED9EE764D21A1AE9FFC /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -521,27 +643,38 @@
 				BC24E0F71791679A00F1674E /* BMidiNote.m in Sources */,
 				BC24E08F1791673D00F1674E /* DDAppDelegate.m in Sources */,
 				BC85E8BE179C49B30079CFE5 /* DDCell.m in Sources */,
+				BCD1FDE617A70EC000C08B82 /* DDEvolvingGameOfLife.m in Sources */,
 				BC24E0F91791679A00F1674E /* BSequence.m in Sources */,
 				BCB5BF6317917025006C3C30 /* DDGridView.m in Sources */,
 				BC24E0F61791679A00F1674E /* BMidiManager.m in Sources */,
 				BC85E8AF179C04A20079CFE5 /* DDReactiveGameOfLife.m in Sources */,
+				BCD1FE0917A711DE00C08B82 /* PulseOrgan.m in Sources */,
 				BC24E0FB1791679A00F1674E /* BTempoEvent.m in Sources */,
+				BCD1FE0A17A711DE00C08B82 /* SawBrass.m in Sources */,
+				BCD1FE0E17A711DE00C08B82 /* Voice.m in Sources */,
+				BCD1FE0D17A711DE00C08B82 /* TriangleFlute.m in Sources */,
 				BC85E8C9179C4B8B0079CFE5 /* NSMutableArray+Counting.m in Sources */,
 				BC24E0F81791679A00F1674E /* BObjectPool.m in Sources */,
+				BCD1FE0717A711DE00C08B82 /* AQSynth.m in Sources */,
 				BC85E8C3179C49E40079CFE5 /* DDFoodCell.m in Sources */,
 				BC24E0FA1791679A00F1674E /* BSequencePlayer.m in Sources */,
 				BC24E0F41791679A00F1674E /* BMidiClock.m in Sources */,
 				BC24E08B1791673D00F1674E /* main.m in Sources */,
+				BCD1FE0C17A711DE00C08B82 /* SquareStrings.m in Sources */,
 				BCB5BF69179180FF006C3C30 /* DDConwaysGameOfLife.m in Sources */,
 				BC6AFD0F179C5F4F003AC5FC /* DDReactiveSettings.m in Sources */,
 				BCB5BF6617917572006C3C30 /* DDMainViewController.m in Sources */,
+				BCD1FE0B17A711DE00C08B82 /* SinePiano.m in Sources */,
+				BCD1FE0617A711DE00C08B82 /* AQSound.m in Sources */,
 				BC24E0F51791679A00F1674E /* BMidiEvent.m in Sources */,
 				BC41E0241792F84B0087A109 /* DDSegmentedControl.m in Sources */,
 				BC6AFD0B179C5F20003AC5FC /* DDConwaysSettings.m in Sources */,
+				BCD1FDEC17A70FE200C08B82 /* DDEvolvingLifeCell.m in Sources */,
 				BC41E0271792FD490087A109 /* DDSettingsViewController.m in Sources */,
+				BCD1FE0517A711DE00C08B82 /* AQPlayer.m in Sources */,
 				BCB5BF5C17916BF7006C3C30 /* DDAbstractGameOfLife.m in Sources */,
 				BC24E0F31791679A00F1674E /* BChannelEvent.m in Sources */,
-				BC85E8C6179C4A330079CFE5 /* DDLifeCell.m in Sources */,
+				BC85E8C6179C4A330079CFE5 /* DDReactiveLifeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +803,10 @@
 			baseConfigurationReference = 476DE402898644F8A85825DE /* Pods/Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vasco Orey (4NBPX3CKE6)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cellular-Sounds/Cellular-Sounds-Prefix.pch";
 				INFOPLIST_FILE = "Cellular-Sounds/Cellular-Sounds-Info.plist";
@@ -684,6 +821,10 @@
 			baseConfigurationReference = 476DE402898644F8A85825DE /* Pods/Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vasco Orey (4NBPX3CKE6)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cellular-Sounds/Cellular-Sounds-Prefix.pch";
 				INFOPLIST_FILE = "Cellular-Sounds/Cellular-Sounds-Info.plist";

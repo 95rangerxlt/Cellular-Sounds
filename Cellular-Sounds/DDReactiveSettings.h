@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSettingsResponder.h"
 
-@interface DDReactiveSettings : NSObject <DDSettingsResponder>
+@interface DDReactiveSettings : NSObject
 @end

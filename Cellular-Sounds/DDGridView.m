@@ -15,6 +15,7 @@
 @property (nonatomic) CGFloat xPadding;
 @property (nonatomic) CGFloat yPadding;
 @property (nonatomic) NSUInteger rowToHighlight;
+@property (nonatomic) NSInteger lastHighlightedRow;
 @property (nonatomic) BOOL shouldHighlightRow;
 @end
 
@@ -28,11 +29,11 @@
       self.multipleTouchEnabled = NO;
       self.lastNumCols = 0;
       self.lastNumRows = 0;
+      self.lastHighlightedRow = -1;
     }
     return self;
 }
 
-#warning TODO - Improve this method
 -(void)drawRect:(CGRect)rect
 {
   // Drawing code
@@ -41,11 +42,12 @@
   for(NSUInteger row = 0; row < numRows; row ++)
   {
     NSUInteger numCols = [self.grid[row] count];
-    CGFloat extra = self.shouldHighlightRow && row == self.rowToHighlight ? 2.0f : 0.0f;
+    CGFloat yOriginDelta = 0.0f;
+    CGFloat heightDelta = 0.0f;
     for(NSUInteger col = 0; col < numCols; col ++)
     {
       id cellContents = self.grid[row][col];
-      CGRect cellRect = CGRectMake(self.xPadding + (col * self.cellSide), self.yPadding + (row * self.cellSide), self.cellSide, self.cellSide);
+      CGRect cellRect = CGRectMake(self.xPadding + (col * self.cellSide), yOriginDelta + self.yPadding + (row * self.cellSide), self.cellSide, self.cellSide + heightDelta);
       UIBezierPath *path = [UIBezierPath bezierPathWithRect:cellRect];
       path.lineWidth = 2.0f;
       UIColor *cellColor;
@@ -66,6 +68,15 @@
 }
 
 #pragma mark - Grid
+
+-(void)setLastHighlightedRow:(NSInteger)lastHighlightedRow
+{
+  if(lastHighlightedRow >= self.lastNumRows)
+  {
+    lastHighlightedRow = 0;
+  }
+  _lastHighlightedRow = lastHighlightedRow;
+}
 
 -(void)setGrid:(NSArray *)grid
 {
@@ -98,13 +109,6 @@
 -(void)activateRow:(NSUInteger)row col:(NSUInteger)col color:(UIColor *)color
 {
   self.grid[row][col] = color;
-  [self setNeedsDisplay];
-}
-
--(void)hightlightRow:(NSUInteger)row
-{
-  self.rowToHighlight = row;
-  self.shouldHighlightRow = YES;
   [self setNeedsDisplay];
 }
 

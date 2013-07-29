@@ -1,3 +1,4 @@
+Crashlytics.framework/
 *.sf2
 # Xcode
 .DS_Store

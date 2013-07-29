@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSMutableArray (Counting)
-+(NSMutableArray *)numbersUpToAndIncluding:(NSUInteger)value;
++(NSMutableArray *)arrayWithNumbersUpToAndIncluding:(NSUInteger)value;
 @end

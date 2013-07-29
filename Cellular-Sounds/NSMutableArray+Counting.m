@@ -9,7 +9,7 @@
 #import "NSMutableArray+Counting.h"
 
 @implementation NSMutableArray (Counting)
-+(NSMutableArray *)numbersUpToAndIncluding:(NSUInteger)value
++(NSMutableArray *)arrayWithNumbersUpToAndIncluding:(NSUInteger)value
 {
   NSMutableArray *array = [NSMutableArray array];
   for(int i = 0; i < value; i ++)

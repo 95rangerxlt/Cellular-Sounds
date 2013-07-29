@@ -64,6 +64,11 @@
   return state;
 }
 
+-(id)cellForRow:(NSUInteger)row col:(NSUInteger)col
+{
+  return [self.grid[row][col] copy];
+}
+
 -(void)reset
 {
   DDLogVerbose(@"Resetting Conway...");

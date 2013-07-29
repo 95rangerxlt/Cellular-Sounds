@@ -8,7 +8,7 @@
 
 #import "DDReactiveGameOfLife.h"
 #import "DDCell.h"
-#import "DDLifeCell.h"
+#import "DDReactiveLifeCell.h"
 #import "DDFoodCell.h"
 #import "NSMutableArray+Counting.h"
 
@@ -57,6 +57,11 @@
   return self;
 }
 
+-(id)cellForRow:(NSUInteger)row col:(NSUInteger)col
+{
+  return self.grid[row][col];
+}
+
 -(void)reset
 {
   // Seed the RNG
@@ -73,7 +78,7 @@
          (self.cellSpawnProbability < self.foodSpawnProbability ||
           (self.cellSpawnProbability > self.foodSpawnProbability && spawn > self.foodSpawnProbability)))
       {
-        DDLifeCell *cell =[[DDLifeCell alloc] init];
+        DDReactiveLifeCell *cell = [[DDReactiveLifeCell alloc] init];
         cell.row = i;
         cell.col = j;
         row[j] = cell;
@@ -119,13 +124,13 @@
   {
     return;
   }
-  NSMutableArray *allRows = [NSMutableArray numbersUpToAndIncluding:self.rows];
+  NSMutableArray *allRows = [NSMutableArray arrayWithNumbersUpToAndIncluding:self.rows];
   NSInteger numberOfRows = [allRows count];
   while(numberOfRows)
   {
     NSUInteger currentRowIndex = rand() % numberOfRows;
     NSUInteger row = [allRows[currentRowIndex] unsignedIntegerValue];
-    NSMutableArray *allCols = [NSMutableArray numbersUpToAndIncluding:self.cols];
+    NSMutableArray *allCols = [NSMutableArray arrayWithNumbersUpToAndIncluding:self.cols];
     NSInteger numberOfCols = [allCols count];
     while(numberOfCols)
     {
@@ -133,9 +138,9 @@
       NSUInteger col = [allCols[currentColIndex] unsignedIntegerValue];
       // Check if this row, col is a DDLifeCell
       id cell = self.grid[row][col];
-      if([cell isKindOfClass:[DDLifeCell class]])
+      if([cell isKindOfClass:[DDReactiveLifeCell class]])
       {
-        DDLifeCell *lifeCell = (DDLifeCell *)cell;
+        DDReactiveLifeCell *lifeCell = (DDReactiveLifeCell *)cell;
         if([lifeCell shouldMove])
         {
           NSUInteger rowToCheck = row;
@@ -168,9 +173,9 @@
             self.grid[rowToCheck][colToCheck] = lifeCell;
             self.grid[row][col] = [[DDCell alloc] init];
           }
-          else if([cellToCheck isKindOfClass:[DDLifeCell class]])
+          else if([cellToCheck isKindOfClass:[DDReactiveLifeCell class]])
           {
-            DDLifeCell *otherCell = (DDLifeCell *)cellToCheck;
+            DDReactiveLifeCell *otherCell = (DDReactiveLifeCell *)cellToCheck;
             if(lifeCell.species == otherCell.species)
             {
               if([lifeCell canReproduceWith:otherCell])
@@ -179,7 +184,7 @@
                 NSMutableArray *freeCells = [self freeCellsAtRow:row col:col];
                 NSMutableArray *spawnedCells = [lifeCell reproduceWith:otherCell freeSpace:[freeCells count]];
                 DDLogVerbose(@"Reproducing from (%d,%d) and (%d,%d), species: %d. Got %d new cells to put in %d free space!", row, col, rowToCheck, colToCheck, lifeCell.species, [spawnedCells count], [freeCells count]);
-                for(DDLifeCell *spawned in spawnedCells)
+                for(DDReactiveLifeCell *spawned in spawnedCells)
                 {
                   NSUInteger index = rand() % [freeCells count];
                   if([freeCells[index] isKindOfClass:[DDFoodCell class]])
@@ -250,7 +255,7 @@
            (self.cellSpawnProbability < self.foodSpawnProbability ||
             (self.cellSpawnProbability > self.foodSpawnProbability && spawn > self.foodSpawnProbability)))
         {
-          newCell = [[DDLifeCell alloc] init];
+          newCell = [[DDReactiveLifeCell alloc] init];
         }
         else if(spawn < self.foodSpawnProbability &&
                 (self.foodSpawnProbability < self.cellSpawnProbability ||
@@ -281,35 +286,35 @@
   NSUInteger previousCol = [self previousCol:col];
   NSUInteger nextCol = [self nextCol:col];
   NSMutableArray *freeCells = [NSMutableArray array];
-  if(![self.grid[previousRow][previousCol] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[previousRow][previousCol] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[previousRow][previousCol]];
   }
-  if(![self.grid[previousRow][col] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[previousRow][col] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[previousRow][col]];
   }
-  if(![self.grid[previousRow][nextCol] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[previousRow][nextCol] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[previousRow][nextCol]];
   }
-  if(![self.grid[row][previousCol] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[row][previousCol] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[row][previousCol]];
   }
-  if(![self.grid[row][nextCol] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[row][nextCol] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[row][nextCol]];
   }
-  if(![self.grid[nextRow][previousCol] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[nextRow][previousCol] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[nextRow][previousCol]];
   }
-  if(![self.grid[nextRow][col] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[nextRow][col] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[nextRow][col]];
   }
-  if(![self.grid[nextRow][nextCol] isKindOfClass:[DDLifeCell class]])
+  if(![self.grid[nextRow][nextCol] isKindOfClass:[DDReactiveLifeCell class]])
   {
     [freeCells addObject:self.grid[nextRow][nextCol]];
   }
@@ -322,7 +327,7 @@
   {
     self.lastRow = row;
     self.lastCol = col;
-    if([self.grid[row][col] isKindOfClass:[DDLifeCell class]] && ((DDLifeCell *)self.grid[row][col]).species == species)
+    if([self.grid[row][col] isKindOfClass:[DDReactiveLifeCell class]] && ((DDReactiveLifeCell *)self.grid[row][col]).species == species)
     {
       DDCell *cell = [[DDCell alloc] init];
       cell.row = row;
@@ -331,7 +336,7 @@
     }
     else
     {
-      DDLifeCell *cell = [[DDLifeCell alloc] initWithSpecies:species];
+      DDReactiveLifeCell *cell = [[DDReactiveLifeCell alloc] initWithSpecies:species];
       cell.row = row;
       cell.col = col;
       self.grid[row][col] = cell;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "DDLifeCell.h"
+#import "DDReactiveLifeCell.h"
 
 #define kNumberOfSpecies 4
 #define kMaxLifeValue 100
@@ -14,19 +14,19 @@
 #define kMinAgeForReproduction 8
 #define kMinTimeSinceLastReproduction 5
 
-@interface DDLifeCell ()
+@interface DDReactiveLifeCell ()
 @property (nonatomic, readwrite) NSUInteger species;
 @property (nonatomic) NSInteger age;
 @property (nonatomic) NSInteger timeSinceLastReproduction;
 @end
 
-@implementation DDLifeCell
+@implementation DDReactiveLifeCell
 -(id)init
 {
   if((self = [super init]))
   {
     self.species = rand() % kNumberOfSpecies;
-    self.startingLife = rand() % kMaxLifeValue;
+    self.startingLife = rand() % kMaxLifeValue + 1;
     self.currentLife = self.startingLife;
     self.orientation = (CellOrientation)(rand() % kNumberOfOrientations);
   }
@@ -54,7 +54,7 @@
   }
 }
 
--(void)fight:(DDLifeCell *)cell
+-(void)fight:(DDReactiveLifeCell *)cell
 {
   // The cell with highest current life deals some damage to the other
   if([self isDead] || [cell isDead])
@@ -97,12 +97,12 @@
   return (self.currentLife <= 0);
 }
 
--(BOOL)canReproduceWith:(DDLifeCell *)otherCell
+-(BOOL)canReproduceWith:(DDReactiveLifeCell *)otherCell
 {
   return self.timeSinceLastReproduction >= kMinTimeSinceLastReproduction && otherCell.timeSinceLastReproduction >= kMinTimeSinceLastReproduction && self.age >= kMinAgeForReproduction && otherCell.age >= kMinAgeForReproduction;
 }
 
--(NSMutableArray *)reproduceWith:(DDLifeCell *)otherCell freeSpace:(NSUInteger)freeSpace
+-(NSMutableArray *)reproduceWith:(DDReactiveLifeCell *)otherCell freeSpace:(NSUInteger)freeSpace
 {
   // Probability of using everything is proportional to both having a lot of life
   double spawnProbability = ((double)self.currentLife / self.startingLife) * ((double)otherCell.currentLife / otherCell.startingLife);
@@ -111,7 +111,7 @@
   {
     if((double)rand() / RAND_MAX <= spawnProbability)
     {
-      [spawnedCells addObject:[[DDLifeCell alloc] init]];
+      [spawnedCells addObject:[[DDReactiveLifeCell alloc] init]];
     }
   }
   self.timeSinceLastReproduction = 0;

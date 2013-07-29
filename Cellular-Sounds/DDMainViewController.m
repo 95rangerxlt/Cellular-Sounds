@@ -14,13 +14,14 @@
 #import "DDGridView.h"
 #import "DDConwaysGameOfLife.h"
 #import "AudioManager.h"
+#import "AQSound.h"
 #import "BSequencePlayer.h"
 #import "DDSegmentedControl.h"
 #import "DDSettingsViewController.h"
 #import "DDSettingsResponder.h"
 #import "DDReactiveGameOfLife.h"
 #import "DDCell.h"
-#import "DDLifeCell.h"
+#import "DDReactiveLifeCell.h"
 #import "DDFoodCell.h"
 
 #define kDodgerBlueColor [UIColor colorWithRed:0 green:0.478431f blue:1.0f alpha:1.0f]
@@ -28,7 +29,7 @@
 #define kDarkViolet [UIColor colorWithRed:0.478431f green:0 blue:1.0f alpha:1.0f]
 #define kDeepPinkColor [UIColor colorWithRed:1.0f green:0 blue:0.478431f alpha:1.0f]
 
-@interface DDMainViewController () <DDGridViewDelegate, DDGameOfLifeDelegate, DDSettingsResponder>
+@interface DDMainViewController () <DDGridViewDelegate, DDGameOfLifeDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet DDGridView *gridView;
@@ -49,6 +50,7 @@
 @property (atomic, strong) NSMutableArray *sequence;
 @property (nonatomic, strong) NSMutableArray *completeSong;
 @property (nonatomic, strong) AudioManager *audioManager;
+@property (nonatomic, strong) AQSound *synthManager;
 @property (nonatomic, strong) BSequencePlayer *sequencePlayer;
 @property (nonatomic, strong) BMidiClock *midiClock;
 @property (nonatomic) NSUInteger metronomeTicks;
@@ -57,6 +59,7 @@
 @property (nonatomic) CFTimeInterval lineDeltaTime;
 @property (nonatomic) CFTimeInterval timeLastUpdated;
 @property (nonatomic) CFTimeInterval startTimeForNextBar;
+@property (nonatomic) CFTimeInterval lastGridUpdateTime;
 //
 -(void)setup;
 -(void)setupAudio;
@@ -141,9 +144,6 @@
   CGRect selectedRect = CGRectMake(x, sender.frame.origin.y, (sender.frame.size.width / 4), sender.frame.size.height);
   [popover presentPopoverFromRect:selectedRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
   self.popover = popover;
-  LOG_RECT(sender.frame);
-  LOG_RECT(sender.bounds);
-  LOG_RECT(selectedRect);
 }
 
 - (IBAction)resetPressed
@@ -193,7 +193,7 @@
   [subviews[1] setTintColor:kDarkViolet];
   [subviews[0] setTintColor:kDeepPinkColor];
   self.colors = @[kDodgerBlueColor, kDarkOrangeColor, kDarkViolet, kDeepPinkColor];
-  self.roots = [@[@(60), @(48), @(48), @(48), @(48), @(48), @(48), @(48)] mutableCopy];
+  self.roots = [@[@(32), @(48), @(48), @(48), @(72), @(48), @(48), @(48)] mutableCopy];
   self.scales = [@[@(0), @(0), @(0), @(0)] mutableCopy];
   [self setupAudio];
 }
@@ -233,9 +233,9 @@
       return self.colors[cell - 1];
     }
   }
-  else if([cellContents isKindOfClass:[DDLifeCell class]])
+  else if([cellContents isKindOfClass:[DDReactiveLifeCell class]])
   {
-    DDLifeCell *cell = (DDLifeCell *)cellContents;
+    DDReactiveLifeCell *cell = (DDReactiveLifeCell *)cellContents;
     UIColor *cellColor = self.colors[cell.species];
     return [cellColor colorWithAlphaComponent:((float)cell.currentLife / cell.startingLife)];
   }
@@ -245,6 +245,8 @@
 -(void)gridView:(DDGridView *)gridView didDetectTouchAtRow:(NSUInteger)row col:(NSUInteger)col justStarted:(BOOL)justStarted
 {
   NSUInteger species = [self.currentGameOfLife isKindOfClass:[DDConwaysGameOfLife class]] ? (self.colorSegmentedControl.selectedSegmentIndex + 1) : self.colorSegmentedControl.selectedSegmentIndex;
+  id cell = [self.currentGameOfLife cellForRow:row col:col];
+  DDLogVerbose(@"%@", cell);
   [self.currentGameOfLife flipCellAtRow:row col:col species:species started:justStarted];
 }
 
@@ -265,7 +267,7 @@
   self.audioManager = [[AudioManager alloc] init];
   
   // First grid
-  [self.audioManager addVoice:@"c0" withSound:@"doublebass pibox v2" withPatch:0 withVolume:1];
+  [self.audioManager addVoice:@"c0" withSound:@"doublebass pibox v2" withPatch:0 withVolume:5];
   [self.audioManager addVoice:@"c1" withSound:@"campbells_grand_xylophone" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c2" withSound:@"moog collection 2" withPatch:0 withVolume:1];
   [self.audioManager addVoice:@"c3" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
@@ -276,6 +278,10 @@
   [self.audioManager addVoice:@"c7" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
   
   [self.audioManager startAudioGraph];
+  
+  self.synthManager = [[AQSound alloc] init];
+  [self.synthManager newAQ];
+  [self.synthManager start];
   
   self.lineDeltaTime = (self.midiClock.PPQN / 2);
   
@@ -296,8 +302,7 @@
 {
   // Play the note in the audio manager
   [self.audioManager playNote:note];
-  //NSLog(@"Note: %d, Channel: %d, Velocity: %d, Start: %d, Duration: %d", note.note, note.channel, note.velocity, [note getStartTime], [note getDuration]);
-  //[self.sound triggerMidiNoteAtFirstAvailableVoice:note.note velocity:127];
+//  [self.synthManager midiNoteOn:note.note atVoiceIndex:note.channel velocity:note.velocity];
 }
 
 // Handle any tempo events which occur
@@ -358,6 +363,7 @@
           else
           {
             CFTimeInterval currentBeat = [self.midiClock getCurrentTimeMillis] / 1000.0;
+            
             if(currentBeat - self.timeOfLastBeat > (self.midiClock.BPM / 60.0))
             {
               DDLogWarn(@"*** MIDI Clock skew detected! ***");
@@ -463,9 +469,9 @@
           {
             cellValue = [cell integerValue];
           }
-          else if([cell isKindOfClass:[DDLifeCell class]])
+          else if([cell isKindOfClass:[DDReactiveLifeCell class]])
           {
-            cellValue = ((DDLifeCell *)cell).species;
+            cellValue = ((DDReactiveLifeCell *)cell).species + 1;
           }
           if(cellValue)
           {
@@ -491,10 +497,10 @@
         {
           id cell = grids[grid][row][col];
           UInt8 velocity = 127;
-          if([cell isKindOfClass:[DDLifeCell class]])
+          if([cell isKindOfClass:[DDReactiveLifeCell class]])
           {
-            DDLifeCell *lifeCell = (DDLifeCell *)cell;
-            channel = lifeCell.species;
+            DDReactiveLifeCell *lifeCell = (DDReactiveLifeCell *)cell;
+            channel = lifeCell.species + 1;
             velocity = (UInt8)(velocity * (float)lifeCell.currentLife / lifeCell.startingLife);
             if(!velocity)
             {
@@ -503,21 +509,20 @@
           }
           else if([cell isKindOfClass:[NSNumber class]])
           {
-            channel = [cell integerValue] - 1;
+            channel = [cell integerValue];
           }
           else
           {
             channel = 0;
           }
-          if(channel > 0)
+          if(channel)
           {
             channel += grid * 4;
             //Create a new note and insert it into the dictionary
             BMidiNote *note = [[BMidiNote alloc] init];
             note.channel = (channel - 1);
             note.velocity = velocity;
-#warning TODO: multiple games
-            note.note = [self convertToMidiNoteNumber:col game:0 voice:channel];
+            note.note = [self convertToMidiNoteNumber:col game:grid voice:(channel - 1)];
             [note setStartTime:(startTime + dt)];
             [note setDuration:self.lineDeltaTime];
             notes[currentCol] = note;

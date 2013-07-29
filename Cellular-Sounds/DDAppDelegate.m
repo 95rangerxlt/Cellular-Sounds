@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
+#import <Crashlytics/Crashlytics.h>
 #import "DDAppDelegate.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
@@ -20,6 +21,7 @@
   [DDLog addLogger:[DDTTYLogger sharedInstance]];
   [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
   [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor greenColor] backgroundColor:nil forFlag:LOG_FLAG_INFO];
+  [Crashlytics startWithAPIKey:@"266d69aa0f455c6764be63227a5e1d51ece58911"];
   return YES;
 }
 

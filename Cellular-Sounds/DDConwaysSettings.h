@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSettingsResponder.h"
 
-@interface DDConwaysSettings : NSObject <DDSettingsResponder>
+@interface DDConwaysSettings : NSObject
 +(DDConwaysSettings *)settings;
 @end

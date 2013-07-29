@@ -51,6 +51,12 @@
   return nil;
 }
 
+-(id)cellForRow:(NSUInteger)row col:(NSUInteger)col
+{
+  NSAssert(false, @"%s should be overidden.", __PRETTY_FUNCTION__);
+  return nil;
+}
+
 -(NSUInteger)previousRow:(NSUInteger)fromRow
 {
   //Wrap around if row == 0
